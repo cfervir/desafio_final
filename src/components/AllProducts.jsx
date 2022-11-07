@@ -6,7 +6,7 @@ import ContextData from "../ContextData";
 
 export default function AllProducts() {
 
-  const { navData } = useContext(ContextData);
+  const { navData, isFav } = useContext(ContextData);
   const dataId = useNavigate();
 
   return (
@@ -15,10 +15,10 @@ export default function AllProducts() {
         <div className="gallery__card" key={content.id}>
           <div className="gallery__fav">
             { content.fav ? 
-              <button className="btn btn__fav">
+              <button className="btn btn__fav" onClick={ () => isFav(content.id) }>
                 <img src={ Images.Star } alt="Add to favs!" />
               </button> : 
-              <button className="btn btn__fav">
+              <button className="btn btn__fav" onClick={ () => isFav(content.id) }>
                 <img src={ Images.StarNo } alt="Remove from favs!" />
               </button>
             }

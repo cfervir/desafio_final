@@ -6,7 +6,7 @@ import ContextData from "../ContextData";
 
 export default function Product() {
 
-  const { navData } = useContext(ContextData);
+  const { navData, isFav } = useContext(ContextData);
   const { dataId } = useParams();
 
   return (
@@ -20,14 +20,17 @@ export default function Product() {
               <h3 className="product__title">Created by { filtered.user }</h3>
             </div>
             { filtered.fav ? 
-              <button className="btn btn__fav">
+              <button className="btn btn__fav" onClick={ () => isFav(filtered.id) }>
                 <div className="product__fav--cont container--flex">
-                  <span className="product__fav">Favorite</span>
-                  <img src={ Images.Star } alt="Add to favs!" className="product__star" />
+                  <span className="product__fav">Remove Fav</span>
+                  <img src={ Images.Star } alt="Remove from favs!" className="product__star" />
                 </div>
               </button> : 
-              <button className="btn btn__fav">
-                <img src={ Images.StarNo } alt="Remove from favs!" className="product__star" />
+              <button className="btn btn__fav" onClick={ () => isFav(filtered.id) }>
+                <div className="product__fav--cont container--flex">
+                  <span className="product__fav product__fav--no">Favorite</span>
+                  <img src={ Images.StarNo } alt="Add to favs!" className="product__star" />
+                </div>
               </button>
             }
           </div>

@@ -34,10 +34,26 @@
     border-radius: 0.375em 0.5em 0.313em;
     padding: 0.5em;
     @include shdw-sm;
+    @include t-trns;
 
     @media (min-width: 650px) {
       margin-top: initial;
       margin-right: 0.625em;
+    }
+
+    &:hover,
+    &:focus {
+      background: #F0F0F0;
+      @include grow;
+    }
+
+    &--no {
+      background: #F0F0F0;
+
+      &:hover,
+      &:focus {
+        background: #D7FF67;
+      }
     }
 
     &--cont {

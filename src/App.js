@@ -48,10 +48,16 @@ function App() {
     obtainData(endPoint);
   }, []);
 
+  const isFav = id => {
+    const checkFav = navData.findIndex((i) => i.id === id);
+    navData[checkFav].fav = !navData[checkFav].fav;
+    setNavData([...navData]);
+  };
+
   return (
     <div className="wrapper">
       <ContextUser.Provider value={{ userData, setUserData }}>
-        <ContextData.Provider value={{ navData, setNavData }}>
+        <ContextData.Provider value={{ navData, setNavData, isFav }}>
           <BrowserRouter>
             <Navbar />
             <Routes>
