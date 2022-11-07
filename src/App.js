@@ -28,7 +28,7 @@ function App() {
   const [navData, setNavData] = useState([]);
   const [userData, setUserData] = useState([]);
 
-  const endPoint = "/Submissions.json";
+  const submissions = "/Submissions.json";
   const obtainData = async (url) => {
     try {
       const response = await fetch(url)
@@ -44,8 +44,26 @@ function App() {
     }
   };
 
+  const users = "/Users.json";
+  const obtainUsers = async (url) => {
+    try {
+      const response = await fetch(url)
+      if (response.ok) {
+        if (response.status > 400) {
+          throw Error(`Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setUserData(data);
+        console.log(data);
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  };
+
   useEffect(() => {
-    obtainData(endPoint);
+    obtainData(submissions);
+    obtainUsers(users);
   }, []);
 
   const isFav = id => {

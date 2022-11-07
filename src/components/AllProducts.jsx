@@ -16,10 +16,10 @@ export default function AllProducts() {
           <div className="gallery__fav">
             { content.fav ? 
               <button className="btn btn__fav" onClick={ () => isFav(content.id) }>
-                <img src={ Images.Star } alt="Add to favs!" />
+                <img src={ Images.Star } alt="Remove from favs!" />
               </button> : 
               <button className="btn btn__fav" onClick={ () => isFav(content.id) }>
-                <img src={ Images.StarNo } alt="Remove from favs!" />
+                <img src={ Images.StarNo } alt="Add to favs!" />
               </button>
             }
           </div>

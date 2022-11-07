@@ -1,0 +1,245 @@
+[
+  { 
+    "id": "u0001",
+    "email": "alex@hello.com",
+    "name": "Alexander Grey",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0002",
+    "email": "amr@hello.com",
+    "name": "Amr Miqdadi",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0003",
+    "email": "chait@hello.com",
+    "name": "Chait Goli",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0004",
+    "email": "dan@hello.com",
+    "name": "Dan Cristian",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0005",
+    "email": "leandro@hello.com",
+    "name": "Leandro Barbosa",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0006",
+    "email": "rosivan@hello.com",
+    "name": "Rosivan Morais",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0007",
+    "email": "sebastian@hello.com",
+    "name": "Sebastian Arie",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0008",
+    "email": "stephan@hello.com",
+    "name": "Stephan Müller",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0009",
+    "email": "suvan@hello.com",
+    "name": "Suvan Chowdhury",
+    "birth": "1990-10-10",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      },
+      {
+        "addId": 1,
+        "address": "Your Address, 49",
+        "block": "Some Number Again",
+        "city": "Some City Again",
+        "po": "Another Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  },
+  { 
+    "id": "u0010",
+    "email": "carlos@hello.com",
+    "name": "Carlos Fernández",
+    "birth": "1985-08-06",
+    "country": "Chile",
+    "addresses": [
+      {
+        "addId": 0,
+        "address": "Your Address, 99",
+        "block": "Some Number",
+        "city": "Some City",
+        "po": "Postal Code" 
+      }
+    ],
+    "pwd": "onepassword",
+    "logged": false
+  }
+]
