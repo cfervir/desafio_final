@@ -1,0 +1,123 @@
+@use '../abstracts' as *;
+
+.gallery {
+
+  &__banner {
+    margin-bottom: 1em;
+    border-radius: 1em;
+    @include t-trns;
+    @include shdw;
+
+    &:hover,
+    &:focus {
+      @include grow-sm;
+    }
+  }
+
+  &__wrap {
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+  }
+
+  &__card {
+    position: relative;
+    border-top-left-radius: 0.5em;
+    overflow: hidden;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow-sm;
+    }
+  }
+
+  &__image {
+    cursor: pointer;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    @media (min-width: 650px) {
+      max-width: 19.75rem;
+      max-height: 11rem;
+    }
+
+    &--file {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__fav {
+    z-index: 1;
+    max-width: 2rem;
+    position: absolute;
+    top: 0.65em;
+    right: 0.5em;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow-2x;
+    }
+  }
+  
+
+  &__individual {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &--img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__information {
+    text-align: right;
+    line-height: 1.2;
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    background: #ffffff;
+    padding: 0.5em 0.75em 0.5em 1em;
+    border-top-left-radius: 0.75em;
+
+    @media (min-width: 450px) {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__pictures {
+    margin-top: 1.5em;
+    gap: 1.5em;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (min-width: 1000px) {
+      justify-content: space-between;
+    }
+  }
+
+  &__ind {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    @media (min-width: 650px) {
+      max-width: 19.75rem;
+      max-height: 11rem;
+    }
+
+    &--img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}

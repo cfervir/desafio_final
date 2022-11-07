@@ -1,0 +1,17 @@
+.eula {
+  margin-top: 1em;
+  text-align: justify;
+  font-size: 0.875rem;
+
+  & p + p {
+    margin-top: 1em;
+  }  
+}
+
+.about {
+  margin-top: 1em;
+
+  & p + p {
+    margin-top: 1em;
+  }  
+}

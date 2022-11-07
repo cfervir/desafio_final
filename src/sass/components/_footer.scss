@@ -1,0 +1,87 @@
+@use '../abstracts' as *;
+
+.footer {
+  margin-top: 1em;
+  padding: 1.5em 0;
+  background: linear-gradient(180deg, rgb(193, 200, 224) 20%, rgb(205, 207, 217) 100%);
+  width: 100%;
+
+  &__container {
+    justify-content: space-evenly;
+    gap: 2em;
+    width: 100%;
+    flex-direction: column;
+
+    @media (min-width: 700px) {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+
+  &__form {
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+
+  &__titles {
+    font-size: 0.875rem;
+  }
+
+  &__rrss {
+    width: 10rem;
+    height: 40px;
+    background: #ffffff;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    justify-content: space-between;
+    @include shdw;
+
+    &--img {
+      max-height: 1.5625rem;
+      width: initial;
+      @include t-trns;
+
+      &:hover,
+      &:focus {
+        @include grow-2x;
+      }
+    }
+  }
+
+  &__contact {
+    padding-top: 0.5em;
+  }
+
+  &__logo {
+    max-width: 3.25rem;
+  }
+
+  &__help {
+    margin-left: 0.625em;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__links {
+    line-height: 1;
+    text-decoration: none;
+    text-align: left;
+    color: #000000;
+    font-weight: 700;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+
+    & + & {
+      margin-top: 0.5em;
+    }
+  }
+
+}

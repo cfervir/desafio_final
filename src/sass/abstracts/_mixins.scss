@@ -1,0 +1,26 @@
+@use 'variables' as *;
+
+// Shadow for everything
+@mixin shdw($color: #000000) {
+  box-shadow: 4px 4px 0px 0px $color;
+}
+
+@mixin shdw-sm($color: #000000) {
+  box-shadow: 2px 2px 0px 0px $color;
+}
+
+@mixin grow {
+  transform: scale(1.1);
+}
+
+@mixin grow-2x {
+  transform: scale(1.35);
+}
+
+@mixin grow-sm {
+  transform: scale(1.05);
+}
+
+@mixin t-trns($prop: all) {
+  transition: $prop .2s ease-in;
+}

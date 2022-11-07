@@ -1,0 +1,52 @@
+.form {
+  &__container {
+    max-width: 22rem;
+    margin: 0 auto;
+
+    @media (min-width: 750px) {
+      &--usr {
+        max-width: 30rem;
+
+      }
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  &__subtitle {
+    font-size: 1rem;
+  }
+
+  &__forgot,
+  &__eula {
+    font-size: 0.875rem;
+  }
+
+  &__purple {
+    color: #6C2DBC;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  &__eula {
+    margin-left: 0.5em;
+    line-height: 1;
+    position: relative;
+    bottom: 1px;
+  }
+}
+
+.register {
+  &__click {
+    margin: 4rem 0 3rem;
+  }
+
+  &__sm-title {
+    font-size: 1.125rem;
+    line-height: 1;
+    margin-bottom: 0.375em;
+  }
+}

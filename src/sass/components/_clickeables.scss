@@ -1,0 +1,111 @@
+@use '../abstracts' as *;
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.5em;
+  line-height: 1;
+  font-weight: 700;
+
+  &__img {
+    line-height: 0;
+    padding: 0.5em;
+    max-width: 2.5rem;
+    margin-left: 1em;
+    @include shdw;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+
+  &__join,
+  &__purple,
+  &__teal,
+  &__blue,
+  &__red {
+    font-size: 1.125rem;
+    color: #ffffff;
+    @include shdw;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+
+  &__join,
+  &__purple {
+    padding: 0.75em;
+    background: #6C2DBC; 
+  }
+
+  &__teal {
+    background: rgb(45, 188, 162);
+  }
+
+  &__blue {
+    background: #00A8DE;
+  }
+
+  &__red {
+    background: #EB2D2E;
+  }
+
+  &__purple {
+    padding: 0.75em;
+    width: 80%;
+    margin: 1em auto 0.5em;
+  }
+
+  &__add,
+  &__remove,
+  &__edit {
+    padding: 0.75em;
+  }
+
+  &__spacing {
+    margin: 1em auto 0.5em;
+  }
+
+  &__remove {
+    &-sm {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.75rem;
+      z-index: 1;
+      font-size: 0.875rem;
+      padding: 0.25em 0.5em;
+      @include shdw-sm;
+    }
+  }
+
+  &__fav {
+    align-self: flex-end;
+    background: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__login-sm {
+    font-size: 0.625rem;
+    padding: 0.313em 0.375em;
+    color: #ffffff;
+    background: #6C2DBC; 
+    @include shdw-sm;
+  }
+
+  &__register {
+    width: 80%;
+    padding: 0.75em;
+  }
+
+  &__create {
+    margin: 1.5em auto 0.5em;
+  }
+}
+

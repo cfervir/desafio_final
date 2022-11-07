@@ -1,0 +1,115 @@
+@use '../abstracts' as *;
+
+.input {
+  border: none;
+  outline: none;
+  border-radius: 0.5em;
+  height: 40px;
+  width: 100%;
+  background: #fbfbfb;
+  @include shdw;
+
+  &__label {
+    position: absolute;
+    bottom: 2.125rem;
+    left: 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 0.5em;
+    padding: 0.25em 0.375em;
+    background: #fbfbfb;
+    color: #000000;
+    @include shdw-sm;
+
+    &--container {
+      position: relative;
+      @include t-trns;
+
+      &:hover,
+      &:focus {
+        @include grow-sm;
+      }
+    }
+
+    &--chk {
+      text-align: left;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    &--ta {
+      top: 0.625rem;
+      bottom: initial;
+    }
+  }
+
+  &__checks {
+    margin-top: 1em;
+  }
+
+  &__news {
+    padding: 0.5em 0.75em;
+    font-weight: 600;
+  
+    &::placeholder {
+      font-weight: 600;
+      color: #888888;
+    }
+  }
+
+  &__search {
+    padding: 0.5em 2.25em 0.5em 0.75em;
+
+    @media (min-width: 750px) {
+      width: 19rem;
+    }
+
+    @media (min-width: 1000px) {
+      width: 24rem;
+    }
+  
+    &::placeholder {
+      color: #000000;
+    }
+  }
+
+  &__form {
+    padding: 0.5em 0.75em;
+    margin-top: 1.25em;
+    font-weight: 600;
+
+    &::placeholder {
+      font-weight: 600;
+      color: #888888;
+    }
+
+    &--ta {
+      height: 8rem;
+    }
+  }
+
+  &__light {
+    @include shdw (#C99EFF);
+
+    &-la {
+      @include shdw-sm (#C99EFF);
+    }
+  }
+
+  @media (min-width: 750px) {
+    &__wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &__variable {
+      width: 48%;
+
+      &--full {
+        width: 100%;
+      }
+    }
+  }
+}

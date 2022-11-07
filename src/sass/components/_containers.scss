@@ -1,0 +1,35 @@
+.wrapper {
+  height: 100vh;
+  display: grid;
+  align-content: space-between;
+  align-items: stretch;
+  grid-template-rows: min-content 1fr min-content;
+}
+
+.container {
+  max-width: 62.5rem;
+  margin: 0 1em;
+  text-align: center;
+
+  @media (min-width: 1000px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+    
+  &--flex {
+    display: flex;
+    align-items: center;
+  }
+
+  &__content {
+    padding: 1.5em 0em 0.5em;
+
+    @media (min-width: 650px) {
+      padding: 2.5em 0em 0.5em;
+    }
+
+    @media (min-width: 1000px) {
+      padding: 3.5em 0em 0.5em;
+    }
+  }
+}

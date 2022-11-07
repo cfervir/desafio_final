@@ -1,0 +1,43 @@
+@use '../abstracts' as *;
+
+.user {
+
+  &__info {
+    width: 100%;
+    margin: 0 auto;
+    max-width: 35rem;
+  }
+
+  &__logo {
+    max-width: 50px;
+    @include t-trns;
+
+    &--container {
+      z-index: 3;
+    }
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+
+  &__spacing {
+    margin-top: 2em;
+  }
+
+  &__title,
+  &__subtitle {
+    line-height: 1;
+  }
+
+  &__title {
+    text-align: left;
+    font-size: 1.75rem;
+    margin-left: 0.5em;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+  }
+}

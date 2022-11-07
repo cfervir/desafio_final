@@ -1,0 +1,287 @@
+@use '../abstracts' as *;
+
+.nav {
+  background: linear-gradient(180deg, rgb(98, 211, 171) 0%, rgb(196,221,126) 100%);
+  padding: 0.625em 0 0.5em;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+
+  &::after {
+    content: '';
+    position: absolute;
+    background: url('../../images/wave.svg');
+    height: 40px;
+    bottom: -39px;
+    left: 0;
+    right: 0;
+    background-size: contain;
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  &__contents {
+    justify-content: space-between;
+  }
+
+  &__logo {
+    max-width: 150px;
+    @include t-trns;
+
+    &--container {
+      z-index: 3;
+    }
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+
+  &__check {
+    position: absolute;
+    display: block;
+    height: 1.5rem;
+    width: 2rem;
+    right: 1.5em;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+
+    @media (min-width: 665px) {
+      display: none;
+    }
+  }
+
+  &__hamburger {
+    width: 2rem;
+    right: 1.75em;
+    z-index: 3;
+    position: absolute;
+
+    @media (min-width: 665px) {
+      display: none;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 1.25em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 24rem;
+    z-index: 2;
+    padding: 3em 1em 0em;
+    background: rgb(65, 190, 185, 0.9);
+    // background: linear-gradient(180deg, rgb(180, 180, 180, .9) 0%, rgb(180, 180, 180, .8) 75%, rgb(180, 180, 180, 0) 100%);
+    position: absolute;
+    top: -25rem;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 4px 4px 0px #848484;
+    @include t-trns;
+
+    @media (min-width: 665px) {
+      position: initial;
+      background: initial;
+      padding: initial;
+      height: initial;
+      gap: 2em;
+      flex-direction: row;
+      top: 0rem;
+      transition: transform .2s ease-in;
+      box-shadow: initial;
+      
+    }
+
+    @media (min-width: 1000px) {
+      gap: 2.5em;
+    }
+
+    &--container {
+      display: flex;
+
+      @media (min-width: 665px) {
+        justify-content: flex-end;
+      }
+
+      @media (min-width: 1000px) {
+        width: 70%;
+      }
+    }
+  }
+
+  &__form {
+    @include t-trns;
+    position: relative;
+    margin-bottom: 4px;
+    width: 100%;
+
+    @media (min-width: 665px) {
+      width: initial;
+    }
+
+    &--img {
+      max-height: 1.125rem;
+    }
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  } 
+
+  &__search {
+    @include t-trns;
+    position: absolute;
+    right: 0.25em;
+    background: none;
+
+    &:hover,
+    &:focus {
+      @include grow-2x;
+    }
+  }
+
+  &__cart {
+    @include t-trns;
+    position: relative;
+    text-decoration: none;
+    margin-bottom: 0.313em;
+
+    &--img {
+      max-width: 1.5rem;
+    }
+
+    &--value {
+      background: red;
+      color: #ffffff;
+      font-size: 0.75rem;
+      line-height: 1;
+      font-weight: 700;
+
+      padding: 0.25em 0.375em;
+      border-radius: 1em;
+
+      position: absolute;
+      top: 1.25em;
+      left: 1.25em;
+    }
+
+    &:hover,
+    &:focus {
+      @include grow-2x;
+    }
+  }
+
+  &__join {
+    margin-bottom: 4px;
+  }
+
+  &__login {
+    @include t-trns;
+    text-decoration: none;
+    flex-direction: column;
+
+    &--img {
+      margin-bottom: 0.25em;
+      max-width: 2.125rem;
+    }
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+
+    @media (min-width: 665px) {
+      &:hover > .nav__popup--container,
+      &:focus > .nav__popup--container {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__popup {
+    @media (min-width: 665px) {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 20.375rem;
+      z-index: 3;
+      background: #CDFFAE;
+      padding: 1.125em 1.75em 1em;
+      border-radius: 1.5em;
+      color: #000000;
+      @include shdw;
+    }
+
+    &--container {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 4rem;
+      right: 0;
+    }
+
+    &--title {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+  }
+
+  &__forgot {
+    font-size: 0.875rem;
+
+    &--link {
+      color: #6C2DBC;
+      text-decoration: none;
+      font-weight: 700;
+    }
+  }
+}
+
+.lines,
+.lines::before,
+.lines::after {
+  position: relative;
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  background: #ffffff;
+  transition: all .2s ease-in-out;
+}
+
+.lines::before,
+.lines::after {
+  content: '';
+}
+
+.lines::before {
+  top: -10px
+}
+
+.lines::after {
+  top: 7px
+}
+
+.nav__check:checked ~ .nav__links {
+  top: 0;
+}
+
+.nav__check:checked + .nav__hamburger .lines::before {
+  transform: rotate(-135deg);
+  top: 0;
+}
+
+.nav__check:checked + .nav__hamburger .lines {
+  background: transparent;
+}
+
+.nav__check:checked + .nav__hamburger .lines::after {
+  transform: rotate(135deg);
+  top: -3px;
+}

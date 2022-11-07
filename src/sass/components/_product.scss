@@ -1,0 +1,112 @@
+@use '../abstracts' as *;
+
+.product {
+
+  &__title {
+    line-height: 1;
+
+    &--box {
+      justify-content: space-between;
+      position: relative;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  &__card {
+    position: relative;
+    text-align: left;
+  }
+
+  &__user {
+    margin-right: 0.5em;
+    max-width: 2.125rem;
+
+    &--cont {
+      align-self: flex-end;
+    }
+  }
+  
+  &__fav {
+    background: #D7FF67;
+    line-height: 1;
+    font-size: 0.625rem;
+    margin-top: 0.375em;
+    border-radius: 0.375em 0.5em 0.313em;
+    padding: 0.5em;
+    @include shdw-sm;
+
+    @media (min-width: 650px) {
+      margin-top: initial;
+      margin-right: 0.625em;
+    }
+
+    &--cont {
+      flex-direction: column-reverse;
+
+      @media (min-width: 650px) {
+        flex-direction: initial;
+      }
+    }
+  }
+
+  &__star {
+    max-width: 2rem;
+  }
+
+  &__description {
+    @media (min-width: 650px) {
+      margin-top: 0.5em;
+    }
+  }
+
+  &__price {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-left: 0.5em;
+    align-self: end;
+
+    @media (min-width: 650px) {
+      align-self: initial;
+    }
+  }
+
+  &__currency {
+    font-size: 1rem;
+    margin: 0 1em 0 0.25em;
+  }
+
+  &__data {
+    @media (min-width: 650px) {
+      display: flex;
+      gap: 1em;
+      justify-content: space-between;
+    }
+  }
+
+  &__img {
+    border-radius: 0.75em;
+    @media (min-width: 650px) {
+      max-width: 60%;
+    }
+  }
+
+  &__final {
+    margin-top: 1em;
+    justify-content: space-between;
+
+    @media (min-width: 650px) {
+      width: 100%;
+      gap: 1em;
+      align-items: self-start;
+    }
+  }
+  
+  &__box {
+    margin: 1em auto 0;
+    padding: 0.5em 0.75em;
+    width: 80%;
+    border-radius: 0.5em;
+    background: #fbfbfb;
+    @include shdw;
+  }
+}
