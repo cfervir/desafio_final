@@ -72,10 +72,15 @@ function App() {
     setNavData([...navData]);
   };
 
+  const removeImg = id => {
+    const removed = navData.filter((items) => items.id !== id);
+    setNavData(removed);
+  };
+
   return (
     <div className="wrapper">
       <ContextUser.Provider value={{ userData, setUserData }}>
-        <ContextData.Provider value={{ navData, setNavData, isFav }}>
+        <ContextData.Provider value={{ navData, setNavData, isFav, removeImg }}>
           <BrowserRouter>
             <Navbar />
             <Routes>

@@ -4,10 +4,10 @@ import ContextData from "../ContextData";
 
 export default function UserProducts() {
 
-  const { navData } = useContext(ContextData);
+  const { navData, removeImg } = useContext(ContextData);
 
   return (
-    <div className="container">
+    <div className="gallery__pictures--cont container">
       <div className="gallery__pictures container--flex">
         { navData.filter(data => data.userId === "u0004").map(filtered => (
           <div key={filtered.id} className="gallery__ind container--flex">
@@ -17,7 +17,7 @@ export default function UserProducts() {
               className="gallery__ind--img"
             />
             <div className="gallery__ind--btn">
-              <button className="btn btn__red btn__remove-sm">Remove</button>
+              <button className="btn btn__red btn__remove-sm" onClick={ () => removeImg(filtered.id) }>Remove</button>
             </div>
           </div>
         ))}

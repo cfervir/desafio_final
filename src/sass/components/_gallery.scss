@@ -94,14 +94,10 @@
   }
 
   &__pictures {
-    margin-top: 1.5em;
+    margin-top: 1em;
     gap: 1.5em;
     flex-wrap: wrap;
     justify-content: center;
-
-    @media (min-width: 1000px) {
-      justify-content: space-between;
-    }
   }
 
   &__ind {
