@@ -25,6 +25,13 @@
     font-size: 0.875rem;
   }
 
+  &__submit {
+    font-size: 0.75rem;
+    margin-left: 0.5em;
+    position: relative;
+    bottom: 1px;
+  }
+
   &__purple {
     color: #6C2DBC;
     text-decoration: none;

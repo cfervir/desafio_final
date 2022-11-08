@@ -26,7 +26,8 @@
   &__purple,
   &__teal,
   &__blue,
-  &__red {
+  &__red,
+  &__mag {
     font-size: 1.125rem;
     color: #ffffff;
     @include shdw;
@@ -56,6 +57,11 @@
     background: #EB2D2E;
   }
 
+  &__mag {
+    background: #DE00A0;
+    margin-left: 1.125em;
+  }
+
   &__purple {
     padding: 0.75em;
     width: 80%;
@@ -77,6 +83,12 @@
     }
   }
 
+  &__upload {
+    margin-top: 1.25em;
+    padding: 0.5em 0.75em;
+    @include grow-sm;
+  }
+
   &__spacing {
     margin: 1em auto 0.5em;
   }
@@ -84,6 +96,13 @@
   &__width {
     width: 100%;
     max-width: 6rem;
+  }
+
+  &__add {
+    &--new {
+      margin-top: 0.75em;
+      max-width: initial;
+    }
   }
 
   &__remove {
