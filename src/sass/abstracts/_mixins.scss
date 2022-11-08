@@ -18,7 +18,7 @@
 }
 
 @mixin grow-sm {
-  transform: scale(1.05);
+  transform: scale(1.05) !important;
 }
 
 @mixin t-trns($prop: all) {

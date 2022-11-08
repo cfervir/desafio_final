@@ -17,7 +17,6 @@ export default function User() {
           <h2 className="user__title" key={filtered.id}>{`Hey ${filtered.user}!`}</h2>
         ))}
       </div>
-      <p className="form__subtitle"> </p>
       <div className="form__container form__container--usr">
         <UserForm />
       </div>

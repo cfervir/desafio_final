@@ -97,6 +97,20 @@
     }
   }
 
+  &__dark {
+    @include shdw (#6C2DBC);
+
+    &-la {
+      @include shdw-sm (#6C2DBC);
+    }
+  }
+
+  &__buttons {
+    margin-top: 1em;
+    gap: 1em;
+    justify-content: center;
+  }
+
   @media (min-width: 750px) {
     &__wrap {
       display: flex;
@@ -112,4 +126,11 @@
       }
     }
   }
+}
+
+select {
+  appearance: none !important;
+  background: url(../../images/dropdown.png) no-repeat right #fbfbfb !important;
+  background-position: calc(100% - 1rem) center !important;
+  background-size: 0.75rem !important;
 }
