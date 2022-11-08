@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# gallery
+/gallery
+
 # production
 /build
 
