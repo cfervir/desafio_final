@@ -22,8 +22,15 @@ export default function UserEditAddress() {
           <input type="text" className="input input__form input__dark" name="user__city" defaultValue="Some city" />
         </div>
         <div className="input__label--container input__variable">
-          <label htmlFor="user__po" className="input__label input__dark--la">Postal Code</label>
-          <input type="text" className="input input__form input__dark" name="user__po" defaultValue="999-999" />
+          <label htmlFor="user__country" className="input__label input__dark--la">Country</label>
+          <select className="input input__form input__dark" name="user__country">
+            <option defaultValue="Chile">Chile</option>
+            <option defaultValue="Argentina">Argentina</option>
+            <option defaultValue="Peru">Peru</option>
+            <option defaultValue="Brasil">Brasil</option>
+            <option defaultValue="Colombia">Colombia</option>
+            <option defaultValue="Bolivia">Bolivia</option>
+          </select>
         </div>
       </div>
       <div className="input__buttons container--flex">

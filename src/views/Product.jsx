@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 
 import Images from "../images";
 import ContextData from "../ContextData";
+import ContextUser from "../ContextUser";
 
 export default function Product() {
 
+  const { isAuth } = useContext(ContextUser);
   const { navData, isFav } = useContext(ContextData);
   const { dataId } = useParams();
 
@@ -19,7 +21,7 @@ export default function Product() {
               <img className="product__user" src={ Images.User } alt="login" />
               <h3 className="product__title">Created by { filtered.user }</h3>
             </div>
-            { filtered.fav ? 
+            { isAuth.logged ? filtered.fav ? 
               <button className="btn btn__fav" onClick={ () => isFav(filtered.id) }>
                 <div className="product__fav--cont container--flex">
                   <span className="product__fav">Remove Fav</span>
@@ -32,7 +34,7 @@ export default function Product() {
                   <img src={ Images.StarNo } alt="Add to favs!" className="product__star" />
                 </div>
               </button>
-            }
+            : "" }
           </div>
           <div className="product__data">
             <img src={ filtered.img } alt={ filtered.title } className="product__img" />

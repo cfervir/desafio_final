@@ -10,6 +10,7 @@ export default function UserGallery() {
 
   return(
     <div className="container container__content">
+      { console.log(navData) }
       Lalo
       { navData.filter(data => data.userId === dataUser).map(filtered => (
           <div key={filtered.id} className="gallery__ind container--flex">

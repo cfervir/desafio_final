@@ -10,16 +10,20 @@ export default function RegisterForm( { title, subtitle } ) {
         <input type="text" className="input input__form" name="register__email" placeholder="your@email.com" required />
       </div>
       <div className="input__label--container">
+        <label htmlFor="register__nick" className="input__label">Username</label>
+        <input type="text" className="input input__form" name="register__nick" placeholder="Username" required />
+      </div>
+      <div className="input__label--container">
         <label htmlFor="register__name" className="input__label">Name</label>
         <input type="text" className="input input__form" name="register__name" placeholder="Name" required />
       </div>
       <div className="input__label--container">
-        <label htmlFor="register__date" className="input__label">Date of Birth</label>
-        <input type="date" className="input input__form" name="register__date" min="1910-12-31" max="2004-11-01" placeholder="09/09/1990" required />
-      </div>
-      <div className="input__label--container">
         <label htmlFor="register__password" className="input__label">Password</label>
         <input type="password" className="input input__form" name="register__password" placeholder="Password" required />
+      </div>
+      <div className="input__label--container">
+        <label htmlFor="register__password-rpt" className="input__label">Repeat Password</label>
+        <input type="password" className="input input__form" name="register__password-rpt" placeholder="Password" required />
       </div>
       <div className="input__checks">
         <div className="input__label--chk">

@@ -12,6 +12,7 @@ const Images = {
   FB: require('./fb.png'),
   TW: require('./tw.png'),
   Us: require('./us.jpg'),
+  LogOut: require('./logout.png'),
   Banner: require('./banner.jpg'),
 };
 

@@ -1,9 +1,15 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Images from "../images";
 
-import LoginForm from "./LoginForm";
+import Images from "../images";
+import NavLogged from "./NavLogged";
+import NavOut from "./NavOut";
+
+import ContextUser from "../ContextUser";
 
 export default function Navbar() {
+
+  const { isAuth } = useContext(ContextUser);
   
   return (
     <nav className="nav">
@@ -31,20 +37,7 @@ export default function Navbar() {
               <img className="nav__cart--img" src={ Images.Cart } alt="Cart" />
               <span className="nav__cart--value">X</span>
             </Link>
-            <Link className="nav__join" to="/join">
-              <button className="btn btn__join">Join us!</button>
-            </Link>
-            <div className="nav__login container--flex">
-              <Link className="nav__login container--flex" to="/login">
-                <img className="nav__login--img" src={ Images.User } alt="login" />
-                <button className="btn btn__login-sm">Log In</button>
-              </Link>
-              <div className="nav__popup--container">
-                <div className="nav__popup">
-                  <LoginForm title="Login" />
-                </div>
-              </div>
-            </div>
+            {isAuth.logged ? <NavLogged /> : <NavOut />}
           </div>          
         </div>
       </div>

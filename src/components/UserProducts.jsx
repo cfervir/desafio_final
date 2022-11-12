@@ -2,14 +2,14 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import ContextData from "../ContextData";
 
-export default function UserProducts() {
+export default function UserProducts( {isAuth} ) {
 
   const { navData, removeImg } = useContext(ContextData);
 
   return (
     <div className="gallery__pictures--cont container">
       <div className="gallery__pictures container--flex">
-        { navData.filter(data => data.userId === "u0004").map(filtered => (
+        { navData.filter(data => data.userId === isAuth.id).map(filtered => (
           <div key={filtered.id} className="gallery__ind container--flex">
             <img
               src={ filtered.imgSmall }

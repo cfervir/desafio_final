@@ -137,6 +137,14 @@
     padding: 0.75em;
   }
 
+  &__logout {
+    margin-left: 0;
+
+    @media (min-width: 665px) {
+      margin-left: 1em;
+    }
+  }
+
   &__create {
     margin: 1.5em auto 0.5em;
   }
