@@ -9,6 +9,7 @@ export default function AllProducts() {
 
   const { isAuth, userData } = useContext(ContextUser);
   const { navData, isFav } = useContext(ContextData);
+  console.log(navData);
 
   const navigate = useNavigate();
 
