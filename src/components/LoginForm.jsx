@@ -19,7 +19,7 @@ export default function LoginForm( { title, subtitle } ) {
     if (!email && !pwd) {
       console.log('Llene datos');
     } else {
-      const findUser = userData.find(e => e.email === email);
+      let findUser = userData.find(e => e.email === email);
       if ( findUser !== undefined ) {
         if (findUser.pwd === pwd) {
           setIsAuth({

@@ -31,6 +31,7 @@ function App() {
 
   // User Information
   const [userData, setUserData] = useState([]);
+  console.log(userData);
 
   // Authentication
   const [isAuth, setIsAuth] = useState({

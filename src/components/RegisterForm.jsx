@@ -1,29 +1,57 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+import ContextUser from "../ContextUser";
 
 export default function RegisterForm( { title, subtitle } ) {
+
+  const { useForm, setUserData } = useContext(ContextUser);
+  const navigate = useNavigate();
+
+  const initialState = {};
+  const { values, changeHandler } = useForm(initialState);
+
+  const addNew = (e) => {
+    e.preventDefault();
+
+    if (values.pwd === values.pwdRepeat) {
+      setUserData(currentUsers => [...currentUsers, {
+          id: `u${Date.now()}`,
+          nick: values.nick,
+          email: values.email,
+          name: values.name,
+          pwd: values.pwd
+        }
+      ])
+      navigate("/login");
+    } else {
+      console.log("Passwords don't match!");
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={addNew}>
       <h3 className="form__title"> { title } </h3>
       <p className="form__subtitle"> { subtitle } </p>
       <div className="input__label--container">
-        <label htmlFor="register__email" className="input__label">Email</label>
-        <input type="text" className="input input__form" name="register__email" placeholder="your@email.com" required />
+        <label htmlFor="email" className="input__label">Email</label>
+        <input type="text" className="input input__form" name="email" onChange={changeHandler} placeholder="your@email.com" required />
       </div>
       <div className="input__label--container">
-        <label htmlFor="register__nick" className="input__label">Username</label>
-        <input type="text" className="input input__form" name="register__nick" placeholder="Username" required />
+        <label htmlFor="nick" className="input__label">Username</label>
+        <input type="text" className="input input__form" name="nick" onChange={changeHandler} placeholder="Username" required />
       </div>
       <div className="input__label--container">
-        <label htmlFor="register__name" className="input__label">Name</label>
-        <input type="text" className="input input__form" name="register__name" placeholder="Name" required />
+        <label htmlFor="name" className="input__label">Name</label>
+        <input type="text" className="input input__form" name="name" onChange={changeHandler} placeholder="Name" required />
       </div>
       <div className="input__label--container">
-        <label htmlFor="register__password" className="input__label">Password</label>
-        <input type="password" className="input input__form" name="register__password" placeholder="Password" required />
+        <label htmlFor="pwd" className="input__label">Password</label>
+        <input type="password" className="input input__form" name="pwd" onChange={changeHandler} placeholder="Password" required />
       </div>
       <div className="input__label--container">
-        <label htmlFor="register__password-rpt" className="input__label">Repeat Password</label>
-        <input type="password" className="input input__form" name="register__password-rpt" placeholder="Password" required />
+        <label htmlFor="pwdRepeat" className="input__label">Repeat Password</label>
+        <input type="password" className="input input__form" name="pwdRepeat" onChange={changeHandler} placeholder="Repeat Password" required />
       </div>
       <div className="input__checks">
         <div className="input__label--chk">
@@ -35,9 +63,7 @@ export default function RegisterForm( { title, subtitle } ) {
           <label htmlFor="register__eula" className="form__eula">Add me to Impreza's <strong className="form__purple">newsletter</strong> (Optional)</label>
         </div>
       </div>
-      <Link to="/user">
-        <button className="btn btn__purple btn__create">Create Account</button>
-      </Link>
+      <button className="btn btn__purple btn__create">Create Account</button>
     </form>
   )
 }
