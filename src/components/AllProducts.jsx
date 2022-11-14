@@ -7,15 +7,22 @@ import ContextUser from "../ContextUser";
 
 export default function AllProducts() {
 
-  const { isAuth, userData } = useContext(ContextUser);
-  const { navData, isFav } = useContext(ContextData);
-  console.log(navData);
+  const { isAuth } = useContext(ContextUser);
+  const { navData, filterInput, isFav } = useContext(ContextData);
 
   const navigate = useNavigate();
 
+  const filteredData = navData.filter((data) => {
+    if (filterInput === '' || filterInput === undefined) {
+      return data;
+    } else {
+      return (data.title.toLowerCase()).includes(filterInput) || (data.user.toLowerCase()).includes(filterInput);
+    }
+  });
+
   return (
     <div className="gallery__wrap container--flex">
-      {navData.map(content => (
+      {filteredData.map(content => (
         <div className="gallery__card" key={content.id}>
           <div className="gallery__fav">
             { isAuth.logged ? content.fav ? 
@@ -32,7 +39,7 @@ export default function AllProducts() {
           </div>
           <div className="gallery__information">
             <h3 className="gallery__title">{ content.title }</h3>
-            <p className="gallery__author">{`By ${ userData.map(creator => creator.name).find(e => e === content.user) }`}</p>
+            <p className="gallery__author">{`By ${ content.user }`}</p>
           </div>
         </div>
       ))}

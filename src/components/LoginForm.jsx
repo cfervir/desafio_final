@@ -13,7 +13,7 @@ export default function LoginForm( { title, subtitle } ) {
 
   const login = (e) => {
     e.preventDefault();
-    const email = values.email;
+    const email = (values.email).toLowerCase();
     const pwd = values.password;
 
     if (!email && !pwd) {

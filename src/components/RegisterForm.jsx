@@ -18,7 +18,7 @@ export default function RegisterForm( { title, subtitle } ) {
       setUserData(currentUsers => [...currentUsers, {
           id: `u${Date.now()}`,
           nick: values.nick,
-          email: values.email,
+          email: (values.email).toLowerCase(),
           name: values.name,
           pwd: values.pwd
         }

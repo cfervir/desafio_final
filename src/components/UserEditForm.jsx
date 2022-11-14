@@ -1,11 +1,13 @@
 import { useContext } from "react";
 
 import ContextUser from "../ContextUser";
+import ContextData from "../ContextData";
 
 export default function UserEditForm() {
 
   const countries = ["Chile", "Argentina", "Peru", "Brasil", "Colombia", "Bolivia"];
   const { useForm, setIsAuth, isAuth, userData, setUserData } = useContext(ContextUser);
+  const { navData, setNavData } = useContext(ContextData);
 
   const initialState = {
     id: isAuth.id,
@@ -16,11 +18,15 @@ export default function UserEditForm() {
   };
   const { values, changeHandler } = useForm(initialState);
 
+  // const repeatedEmail = userData.find(e => e.email === isAuth.email);
+  // console.log(userData);
+  // console.log(isAuth);
+
   const edit = (e) => {
     e.preventDefault();
 
     if (isAuth.pwd === values.pwd) {
-      const newValues = { ...isAuth, ...values };
+      const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase()  };
       setIsAuth(newValues);
 
       const findUser = userData.findIndex(e => e.id === isAuth.id);
@@ -30,18 +36,22 @@ export default function UserEditForm() {
           //   const newPwd = values.newPwd;
           //   console.log(newPwd);
           // }
-          return { ...newData, ...values };
+          return { ...newData, email: (values.email).toLowerCase() };
         }
         return newData;
       });
       setUserData(updateState);
 
-      // setUserData(currentValues => [
-      //   ...currentValues, {[findUser]: values
-      // }]);
-
+      // const findNames = navData.filter(e => e.userId === isAuth.id);
+      const updateName = navData.map((newName) => {
+        if (newName.userId === isAuth.id) {
+          return { ...newName, user: values.name };
+        }
+        return newName;
+      });
+      setNavData(updateName);
     } else {
-      console.log('Bad password')
+      console.log('Bad password');
     }
   }
 

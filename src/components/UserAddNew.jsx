@@ -104,10 +104,10 @@ export default function UserAddNew() {
             <input type="checkbox" name="submit__owner" required />
             <label htmlFor="submit__owner" className="form__submit">I declare to be the <strong className="form__purple">owner of this file and its contents.</strong></label>
           </div>
-          <div className="input__label--sub">
+          {/* <div className="input__label--sub">
             <input type="checkbox" name="submit__mature" />
             <label htmlFor="submit__mature" className="form__submit">This has <strong className="form__purple">mature content.</strong></label>
-          </div>
+          </div> */}
           <button className="btn btn__width btn__blue btn__add btn__add--new">Upload</button>
         </div>
       </div>

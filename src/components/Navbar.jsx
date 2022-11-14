@@ -6,10 +6,12 @@ import NavLogged from "./NavLogged";
 import NavOut from "./NavOut";
 
 import ContextUser from "../ContextUser";
+import ContextData from "../ContextData";
 
 export default function Navbar() {
 
   const { isAuth } = useContext(ContextUser);
+  const { searchHandler } = useContext(ContextData);
   
   return (
     <nav className="nav">
@@ -30,7 +32,7 @@ export default function Navbar() {
           <div className="nav__links container--flex">
 
             <form className="nav__form container--flex">
-              <input type="text" className="input input__search" name="search" placeholder="What do you want?" required />
+              <input type="text" className="input input__search" name="search" onChange={searchHandler} placeholder="What do you want?" />
               <button className="btn nav__search"><img className="nav__form--img" src={ Images.Search } alt="Search!" /></button>
             </form>
             <Link className="nav__cart" to="/cart">

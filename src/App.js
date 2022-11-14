@@ -37,6 +37,13 @@ function App() {
     logged: false
   });
 
+  // Filter 
+  const [filterInput, setFilterInput] = useState();
+  const searchHandler = (e) => {
+    let search = e.target.value.toLowerCase();
+    setFilterInput(search);
+  };
+
   function useForm(initialState = {}) {
     const [values, setValues] = useState(initialState);
     const changeHandler = e => {
@@ -87,7 +94,7 @@ function App() {
   return (
     <div className="wrapper">
       <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm }}>
-        <ContextData.Provider value={{ navData, setNavData, isFav, removeImg }}>
+        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, isFav, removeImg }}>
           <BrowserRouter>
             <Navbar />
             <Routes>
