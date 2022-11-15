@@ -16,6 +16,7 @@ export default function AllProducts() {
     if (filterInput === '' || filterInput === undefined) {
       return data;
     } else {
+      // Somehow this works!
       return (data.title.toLowerCase()).includes(filterInput) || (data.user.toLowerCase()).includes(filterInput);
     }
   });

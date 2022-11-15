@@ -7,7 +7,7 @@ import ContextData from "../ContextData";
 export default function UserAddNew() {
 
   const [file, setFile] = useState();
-  const { useForm, isAuth } = useContext(ContextUser);
+  const { useForm, isAuth, setModalMsg, toggleModal } = useContext(ContextUser);
   const { setNavData } = useContext(ContextData);
 
   const navigate = useNavigate();
@@ -30,7 +30,13 @@ export default function UserAddNew() {
     e.preventDefault();
     
     if (values.category === "Choose one!" || values.category === undefined) {
-      console.log("Choose a category!");
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Eeep!',
+          content: 'You need to choose a category!'
+        }
+      ]);
     } else {
         setNavData(currentArt => [...currentArt, {
           user: isAuth.name,
@@ -46,6 +52,14 @@ export default function UserAddNew() {
         }
       ])
       navigate("/user");
+
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Nice!',
+          content: 'Your art has been added!'
+        }
+      ]);
     }
   }
   

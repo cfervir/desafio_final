@@ -5,7 +5,7 @@ import ContextUser from "../ContextUser";
 
 export default function LoginForm( { title, subtitle } ) {
 
-  const { useForm, userData, setIsAuth } = useContext(ContextUser);
+  const { useForm, userData, setIsAuth, setModalMsg, toggleModal } = useContext(ContextUser);
   const navigate = useNavigate();
 
   const initialState = { email: '', password: '' };
@@ -27,11 +27,30 @@ export default function LoginForm( { title, subtitle } ) {
             logged: true
           })
           navigate("/user");
+          toggleModal();
+          setModalMsg([
+            {
+              title: 'Welcome back!',
+              content: `It's nice to have you back, ${findUser.name}!`
+            }
+          ]);
         } else {
-          console.log('Bad password')
+          toggleModal();
+          setModalMsg([
+            {
+              title: 'Ouch!',
+              content: "Wrong password. Try to remember it!"
+            }
+          ]);
         }
       } else {
-        console.log(`${email} no existe!`);
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Oh no!',
+            content: `${email} does not exist! Try registering?`
+          }
+        ]);
       }
     }
   }

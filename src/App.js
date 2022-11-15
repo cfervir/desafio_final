@@ -9,6 +9,7 @@ import ContextData from './ContextData';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+import Modal from './views/Modal';
 import Home from './views/Home';
 import Product from './views/Product';
 import Register from './views/Register';
@@ -26,6 +27,19 @@ import NotFound from './views/NotFound';
 
 function App() {
 
+  // Modal System
+  const [modal, setModal] = useState(false);
+  const [modalMsg, setModalMsg] = useState([
+    {
+      title: 'Oh no!',
+      content: 'Ipsumm'
+    }
+  ]);
+
+  const toggleModal = () => {
+    setModal(!modal); 
+  };
+
   // Rendered Information
   const [navData, setNavData] = useState([]);
 
@@ -37,7 +51,7 @@ function App() {
     logged: false
   });
 
-  // Filter 
+  // Filter
   const [filterInput, setFilterInput] = useState();
   const searchHandler = (e) => {
     let search = e.target.value.toLowerCase();
@@ -93,9 +107,10 @@ function App() {
 
   return (
     <div className="wrapper">
-      <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm }}>
+      <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleModal }}>
         <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, isFav, removeImg }}>
           <BrowserRouter>
+            <Modal />
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />

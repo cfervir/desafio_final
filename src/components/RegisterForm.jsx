@@ -5,7 +5,7 @@ import ContextUser from "../ContextUser";
 
 export default function RegisterForm( { title, subtitle } ) {
 
-  const { useForm, setUserData } = useContext(ContextUser);
+  const { useForm, setUserData, setModalMsg, toggleModal } = useContext(ContextUser);
   const navigate = useNavigate();
 
   const initialState = {};
@@ -24,8 +24,21 @@ export default function RegisterForm( { title, subtitle } ) {
         }
       ])
       navigate("/login");
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Hey captain!',
+          content: "It's nice to have you here!"
+        }
+      ]);
     } else {
-      console.log("Passwords don't match!");
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Ouch!',
+          content: "Your passwords don't match!"
+        }
+      ]);
     }
   };
 

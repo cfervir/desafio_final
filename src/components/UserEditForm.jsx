@@ -6,7 +6,7 @@ import ContextData from "../ContextData";
 export default function UserEditForm() {
 
   const countries = ["Chile", "Argentina", "Peru", "Brasil", "Colombia", "Bolivia"];
-  const { useForm, setIsAuth, isAuth, userData, setUserData } = useContext(ContextUser);
+  const { useForm, setIsAuth, isAuth, userData, setUserData, setModalMsg, toggleModal } = useContext(ContextUser);
   const { navData, setNavData } = useContext(ContextData);
 
   const initialState = {
@@ -50,8 +50,22 @@ export default function UserEditForm() {
         return newName;
       });
       setNavData(updateName);
+
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Congrats!',
+          content: 'Your information has been updated!'
+        }
+      ]);
     } else {
-      console.log('Bad password');
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Oh no!',
+          content: 'Wrong password!'
+        }
+      ]);
     }
   }
 
