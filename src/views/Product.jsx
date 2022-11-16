@@ -8,7 +8,7 @@ import ContextUser from "../ContextUser";
 export default function Product() {
 
   const { isAuth } = useContext(ContextUser);
-  const { navData, isFav } = useContext(ContextData);
+  const { navData, toggleFav } = useContext(ContextData);
   const { dataId } = useParams();
 
   return (
@@ -22,13 +22,13 @@ export default function Product() {
               <h3 className="product__title">Created by { filtered.user }</h3>
             </div>
             { isAuth.logged ? filtered.fav ? 
-              <button className="btn btn__fav" onClick={ () => isFav(filtered.id) }>
+              <button className="btn btn__fav" onClick={ () => toggleFav(filtered.id) }>
                 <div className="product__fav--cont container--flex">
                   <span className="product__fav">Remove Fav</span>
                   <img src={ Images.Star } alt="Remove from favs!" className="product__star" />
                 </div>
               </button> : 
-              <button className="btn btn__fav" onClick={ () => isFav(filtered.id) }>
+              <button className="btn btn__fav" onClick={ () => toggleFav(filtered.id) }>
                 <div className="product__fav--cont container--flex">
                   <span className="product__fav product__fav--no">Favorite</span>
                   <img src={ Images.StarNo } alt="Add to favs!" className="product__star" />

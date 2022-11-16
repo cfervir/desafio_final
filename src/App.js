@@ -58,7 +58,7 @@ function App() {
     setFilterInput(search);
   };
 
-  function useForm(initialState = {}) {
+  const useForm = (initialState = {}) => {
     const [values, setValues] = useState(initialState);
     const changeHandler = e => {
       const newValues = {...values, [e.target.name]: e.target.value};
@@ -90,15 +90,28 @@ function App() {
     obtainData(users, setUserData);
   }, []);
 
-  const isFav = id => {
-    const checkFav = navData.findIndex((i) => i.id === id);
-    navData[checkFav].fav = !navData[checkFav].fav;
-    setNavData([...navData]);
+  const toggleFav = imgId => {
+    // Find the user
+    const theUser = userData.find(e => e.id === isAuth.id);
+
+    let alteredUser = '';
+    if (theUser.favs === undefined) {
+      alteredUser = { ...theUser, favs: [imgId] };
+    } else {
+      const favIndex = theUser.favs.findIndex(e => e === imgId);
+      if (favIndex > -1) {
+        alteredUser = { ...theUser, favs: theUser.favs.filter(favId => favId !== imgId) };
+      } else {
+        alteredUser = { ...theUser, favs: theUser.favs.concat([imgId]) };
+      }
+    }
+    const newUserData = [...userData].filter(data => data.id !== isAuth.id);
+    setUserData([...newUserData, alteredUser]);
   };
 
   const removeImg = id => {
-    const removed = navData.filter((items) => items.id !== id);
-    setNavData(removed);
+    const remove = navData.filter((items) => items.id !== id);
+    setNavData(remove);
   };
 
   const Private = ({ auth: { isAuth }, children }) => {
@@ -108,7 +121,7 @@ function App() {
   return (
     <div className="wrapper">
       <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleModal }}>
-        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, isFav, removeImg }}>
+        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, toggleFav, removeImg }}>
           <BrowserRouter>
             <Modal />
             <Navbar />

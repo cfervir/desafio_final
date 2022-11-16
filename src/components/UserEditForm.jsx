@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import ContextUser from "../ContextUser";
 import ContextData from "../ContextData";
@@ -8,6 +9,9 @@ export default function UserEditForm() {
   const countries = ["Chile", "Argentina", "Peru", "Brasil", "Colombia", "Bolivia"];
   const { useForm, setIsAuth, isAuth, userData, setUserData, setModalMsg, toggleModal } = useContext(ContextUser);
   const { navData, setNavData } = useContext(ContextData);
+  const navigate = useNavigate();
+
+  console.log(userData);
 
   const initialState = {
     id: isAuth.id,
@@ -17,57 +21,65 @@ export default function UserEditForm() {
     birth: isAuth.birth
   };
   const { values, changeHandler } = useForm(initialState);
-
-  // const repeatedEmail = userData.find(e => e.email === isAuth.email);
-  // console.log(userData);
-  // console.log(isAuth);
+  const findEmail = userData.find(data => data.email === values.email);
 
   const edit = (e) => {
     e.preventDefault();
 
-    if (isAuth.pwd === values.pwd) {
-      const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase()  };
-      setIsAuth(newValues);
+    if (findEmail === values.email) {
+      if (isAuth.pwd === values.pwd) {
+        const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase() };
+        setIsAuth(newValues);
 
-      const findUser = userData.findIndex(e => e.id === isAuth.id);
-      const updateState = userData.map((newData, i) => {
-        if (i === findUser) {
-          // if (values.newPwd !== undefined) {
-          //   const newPwd = values.newPwd;
-          //   console.log(newPwd);
-          // }
-          return { ...newData, email: (values.email).toLowerCase() };
-        }
-        return newData;
-      });
-      setUserData(updateState);
+        const findUser = userData.findIndex(e => e.id === isAuth.id);
+        const updateState = userData.map((newData, i) => {
+          if (i === findUser) {
+            // if (values.newPwd !== undefined) {
+            //   const newPwd = values.newPwd;
+            //   console.log(newPwd);
+            // }
+            return { ...newData, email: (values.email).toLowerCase() };
+          }
+          return newData;
+        });
+        setUserData(updateState);
 
-      // const findNames = navData.filter(e => e.userId === isAuth.id);
-      const updateName = navData.map((newName) => {
-        if (newName.userId === isAuth.id) {
-          return { ...newName, user: values.name };
-        }
-        return newName;
-      });
-      setNavData(updateName);
+        // const findNames = navData.filter(e => e.userId === isAuth.id);
+        const updateName = navData.map((newName) => {
+          if (newName.userId === isAuth.id) {
+            return { ...newName, user: values.name };
+          }
+          return newName;
+        });
+        setNavData(updateName);
+        navigate("/user");
 
-      toggleModal();
-      setModalMsg([
-        {
-          title: 'Congrats!',
-          content: 'Your information has been updated!'
-        }
-      ]);
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Congrats!',
+            content: 'Your information has been updated!'
+          }
+        ]);
+      } else {
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Oh no!',
+            content: 'Wrong password!'
+          }
+        ]);
+      }
     } else {
       toggleModal();
       setModalMsg([
         {
-          title: 'Oh no!',
-          content: 'Wrong password!'
+          title: 'Yikes!',
+          content: 'This email is already registered!'
         }
       ]);
     }
-  }
+  };
 
   return (
     <form onSubmit={edit}>
@@ -104,7 +116,7 @@ export default function UserEditForm() {
       </div> 
       <div className="input__wrap">
         <div className="input__label--container input__variable">
-          <label htmlFor="street" className="input__label input__dark--la">Adress</label>
+          <label htmlFor="street" className="input__label input__dark--la">Address</label>
           <input type="text" className="input input__form input__dark" name="street" onChange={changeHandler} placeholder={isAuth.street} />
         </div>
         <div className="input__label--container input__variable">
@@ -117,7 +129,8 @@ export default function UserEditForm() {
         </div>
         <div className="input__label--container input__variable">
           <label htmlFor="country" className="input__label input__dark--la">Country</label>
-          <select className="input input__form input__dark" onChange={changeHandler} name="country">
+          <select className="input input__form input__dark" defaultValue={isAuth.country} onChange={changeHandler} name="country">
+            { isAuth.country === '' ? '' : <option value="">Choose one!</option> }
             { countries.map(data => <option key={data}>{data}</option> )}
           </select>
         </div>
@@ -129,7 +142,11 @@ export default function UserEditForm() {
       </div> */}
 
       <p className="user__spacing"><strong>Your password</strong></p>
-      <div className="input__wrap">
+      <div className="input__label--container input__password">
+        <label htmlFor="pwd" className="input__label input__dark--la">Password</label>
+        <input type="password" className="input input__form input__dark" name="pwd" onChange={changeHandler} placeholder="Confirm password" />
+      </div>
+      {/* <div className="input__wrap">
         <div className="input__label--container input__variable">
           <label htmlFor="new__pwd" className="input__label input__dark--la">New Password</label>
           <input type="password" className="input input__form input__dark" name="newPwd" onChange={changeHandler} placeholder="New password" />
@@ -138,7 +155,7 @@ export default function UserEditForm() {
           <label htmlFor="pwd" className="input__label input__dark--la">Password</label>
           <input type="password" className="input input__form input__dark" name="pwd" onChange={changeHandler} placeholder="Actual password" />
         </div>
-      </div>
+      </div> */}
 
       <div className="input__buttons container--flex">
         <button className="btn btn__teal btn__edit">Modify Account</button>

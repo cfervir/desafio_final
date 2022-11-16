@@ -87,6 +87,12 @@
     background: #ffffff;
     padding: 0.5em 0.75em 0.5em 1em;
     border-top-left-radius: 0.75em;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow-sm;
+    }
 
     @media (min-width: 450px) {
       font-size: 0.875rem;
@@ -114,6 +120,31 @@
       width: 100%;
       height: auto;
       object-fit: cover;
+    }
+  }
+
+  &__price {
+    position: absolute;
+    line-height: 1;
+    gap: 0.25em;
+    top: 0.5rem;
+    left: 0;
+    background: #6C2DBC;
+    color: #ffffff;
+    padding: 0.5em 0.625em 0.5em 0.75em;
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow-sm;
+    }
+
+    &--sm {
+      font-size: 1rem !important;
+      position: relative;
+      bottom: 3px;
     }
   }
 }

@@ -1,11 +1,9 @@
 import { useContext } from "react";
-
 import ContextUser from "../ContextUser";
 
 export default function Modal() {
 
   const { modal, modalMsg, toggleModal } = useContext(ContextUser);
-  console.log(modalMsg);
 
   return (
     <>

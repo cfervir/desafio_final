@@ -218,6 +218,11 @@
     }
   }
 
+  &__password {
+    margin: 0 auto;
+    max-width: 48%;
+  }
+
   @media (min-width: 750px) {
     &__wrap {
       display: flex;
@@ -234,6 +239,29 @@
     }
   }
 }
+
+.select {
+  &__sorting {
+    cursor: pointer;
+    width: 12rem;
+    padding: 0.5em 0 0.5em 1em;
+    border-radius: 0.5em;
+    border: none;
+    outline: none;
+    background-color: #fbfbfb;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 1em;
+    @include shdw;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
+  }
+}
+
 
 select {
   appearance: none !important;

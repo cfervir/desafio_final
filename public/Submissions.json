@@ -10,7 +10,7 @@
     "category": "originals",
     "source": "https://www.pexels.com/photo/person-with-body-painting-1209843/",
     "price": 5,
-    "fav": true
+    "fav": false
   },
   {
     "user": "Amr Miqdadi",
@@ -23,7 +23,7 @@
     "category": "originals",
     "source": "https://www.pexels.com/photo/chimpanzee-sitting-on-wood-735431/",
     "price": 3,
-    "fav": true
+    "fav": false
   },
   {
     "user": "Chait Goli",
@@ -33,7 +33,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Chait-Goli-01-small.jpg",
     "title": "Multicolored Skull",
     "desc": "Multicolored Skull Decor",
-    "category": "originals",
+    "category": "terror",
     "source": "https://www.pexels.com/photo/multicolored-skull-decor-1918290/",
     "price": 7,
     "fav": false
@@ -85,7 +85,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Leandro-Barbosa-01-small.jpg",
     "title": "Selective-color photo",
     "desc": "Multicolored Selective-color Photography of Woman's Face",
-    "category": "originals",
+    "category": "fantasy",
     "source": "https://www.pexels.com/photo/multicolored-selective-color-photography-of-woman-s-face-2234685/",
     "price": 5,
     "fav": false
@@ -124,7 +124,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Sebastian-Arie-01-small.jpg",
     "title": "Concrete Statues",
     "desc": "Two White Concrete Statues Covered by Dust",
-    "category": "originals",
+    "category": "terror",
     "source": "https://www.pexels.com/photo/two-white-concrete-statues-covered-by-dust-566641/",
     "price": 5,
     "fav": false
@@ -137,7 +137,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Stephan-Muller-01-small.jpg",
     "title": "Black and Blue Mask",
     "desc": "Man Wearing Black and Blue Mask Costume",
-    "category": "originals",
+    "category": "terror",
     "source": "https://www.pexels.com/photo/man-wearing-black-and-blue-mask-costume-1473215/",
     "price": 5,
     "fav": false
@@ -150,7 +150,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Suvan-Chowdhury-01-small.jpg",
     "title": "Elephant Sculpture",
     "desc": "Elephant Sculpture under different colors",
-    "category": "originals",
+    "category": "fantasy",
     "source": "https://www.pexels.com/photo/elephant-sculpture-166277/",
     "price": 5,
     "fav": false

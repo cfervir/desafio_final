@@ -15,8 +15,6 @@ export default function UserAddNew() {
   const initialState = {};
   const { values, changeHandler } = useForm(initialState);
 
-  console.log(values);
-
   const uploadFile = e => {
     const newFile = URL.createObjectURL(e.target.files[0]);
     setFile(newFile);
@@ -47,8 +45,7 @@ export default function UserAddNew() {
           title: values.title,
           desc: values.desc,
           category: values.category,
-          price: values.price,
-          fav: false
+          price: values.price
         }
       ])
       navigate("/user");
@@ -57,7 +54,7 @@ export default function UserAddNew() {
       setModalMsg([
         {
           title: 'Nice!',
-          content: 'Your art has been added!'
+          content: `${values.title} has been added!`
         }
       ]);
     }
