@@ -27,48 +27,50 @@ export default function UserEditForm() {
     e.preventDefault();
 
     if (!repeatedEmail) {
-      if (isAuth.pwd === values.pwd) {
-        const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase() };
-        setIsAuth(newValues);
+      if (isAuth.email !== '') {
+        if (isAuth.pwd === values.pwd) {
+          const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase() };
+          setIsAuth(newValues);
 
-        const findUser = userData.findIndex(e => e.id === isAuth.id);
-        const updateState = userData.map((newData, i) => {
-          if (i === findUser) {
-            // Attempt at trying to change password
-            // if (values.newPwd !== undefined) {
-            //   const newPwd = values.newPwd;
-            //   console.log(newPwd);
-            // }
-            return { ...newData, email: (values.email).toLowerCase() };
-          }
-          return newData;
-        });
-        setUserData(updateState);
+          const findUser = userData.findIndex(e => e.id === isAuth.id);
+          const updateState = userData.map((newData, i) => {
+            if (i === findUser) {
+              // Attempt at trying to change password
+              // if (values.newPwd !== undefined) {
+              //   const newPwd = values.newPwd;
+              //   console.log(newPwd);
+              // }
+              return { ...newData, email: (values.email).toLowerCase() };
+            }
+            return newData;
+          });
+          setUserData(updateState);
 
-        const updateName = navData.map((newName) => {
-          if (newName.userId === isAuth.id) {
-            return { ...newName, user: values.name };
-          }
-          return newName;
-        });
-        setNavData(updateName);
-        navigate("/user");
+          const updateName = navData.map((newName) => {
+            if (newName.userId === isAuth.id) {
+              return { ...newName, user: values.name };
+            }
+            return newName;
+          });
+          setNavData(updateName);
+          navigate("/user");
 
-        toggleModal();
-        setModalMsg([
-          {
-            title: 'Congrats!',
-            content: 'Your information has been updated!'
-          }
-        ]);
-      } else {
-        toggleModal();
-        setModalMsg([
-          {
-            title: 'Oh no!',
-            content: 'Wrong password!'
-          }
-        ]);
+          toggleModal();
+          setModalMsg([
+            {
+              title: 'Congrats!',
+              content: 'Your information has been updated!'
+            }
+          ]);
+        } else {
+          toggleModal();
+          setModalMsg([
+            {
+              title: 'Oh no!',
+              content: 'Wrong password!'
+            }
+          ]);
+        } 
       }
     } else {
       toggleModal();
@@ -91,11 +93,11 @@ export default function UserEditForm() {
         </div>
         <div className="input__label--container input__variable">
           <label htmlFor="nick" className="input__label input__dark--la">Username</label>
-          <input type="text" className="input input__form input__dark" name="nick" onChange={changeHandler} placeholder={isAuth.nick} />
+          <input type="text" className="input input__form input__dark" name="nick" maxLength="12" onChange={changeHandler} placeholder={isAuth.nick} />
         </div>
         <div className="input__label--container input__variable">
           <label htmlFor="name" className="input__label input__dark--la">Name</label>
-          <input type="text" className="input input__form input__dark" name="name" onChange={changeHandler} placeholder={isAuth.name} />
+          <input type="text" className="input input__form input__dark" name="name" maxLength="40" onChange={changeHandler} placeholder={isAuth.name} />
         </div>
         <div className="input__label--container input__variable">
           <label htmlFor="birth" className="input__label input__dark--la">Date of Birth</label>

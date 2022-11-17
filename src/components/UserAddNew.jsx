@@ -74,11 +74,11 @@ export default function UserAddNew() {
     <form onSubmit={newPicture}>
       <div className="input__label--container">
         <label htmlFor="title" className="input__label">Title</label>
-        <input type="text" className="input input__form" name="title" onChange={changeHandler} required placeholder="New title" />
+        <input type="text" className="input input__form" name="title" onChange={changeHandler} maxLength="20" required placeholder="New title" />
       </div>
       <div className="input__label--container">
         <label htmlFor="desc" className="input__label">Description</label>
-        <input type="text" className="input input__form" name="desc" onChange={changeHandler} required placeholder="Short Description" />
+        <input type="text" className="input input__form" name="desc" onChange={changeHandler} maxLength="40" required placeholder="Short Description" />
       </div>
       <div className="input__wrap">
         <div className="input__label--container input__variable">
@@ -94,7 +94,7 @@ export default function UserAddNew() {
         </div>
         <div className="input__label--container input__variable">
           <label htmlFor="price" className="input__label">Price</label>
-          <input type="number" className="input input__form" name="price" onChange={changeHandler} required placeholder="Some number" />
+          <input type="number" className="input input__form" name="price" min="0" max="999" onChange={changeHandler} required placeholder="Some number" />
         </div>
       </div>
       <div>
