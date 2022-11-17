@@ -11,8 +11,6 @@ export default function UserEditForm() {
   const { navData, setNavData } = useContext(ContextData);
   const navigate = useNavigate();
 
-  console.log(userData);
-
   const initialState = {
     id: isAuth.id,
     nick: isAuth.nick,
@@ -21,12 +19,14 @@ export default function UserEditForm() {
     birth: isAuth.birth
   };
   const { values, changeHandler } = useForm(initialState);
-  const findEmail = userData.find(data => data.email === values.email);
 
-  const edit = (e) => {
+  const removeUserEmail = userData.filter(data => data.email !== isAuth.email);
+  const repeatedEmail = removeUserEmail.some(data => data.email === values.email);
+
+  const editUser = (e) => {
     e.preventDefault();
 
-    if (findEmail === values.email) {
+    if (!repeatedEmail) {
       if (isAuth.pwd === values.pwd) {
         const newValues = { ...isAuth, ...values, email: (values.email).toLowerCase() };
         setIsAuth(newValues);
@@ -34,6 +34,7 @@ export default function UserEditForm() {
         const findUser = userData.findIndex(e => e.id === isAuth.id);
         const updateState = userData.map((newData, i) => {
           if (i === findUser) {
+            // Attempt at trying to change password
             // if (values.newPwd !== undefined) {
             //   const newPwd = values.newPwd;
             //   console.log(newPwd);
@@ -82,7 +83,7 @@ export default function UserEditForm() {
   };
 
   return (
-    <form onSubmit={edit}>
+    <form onSubmit={editUser}>
       <p className="user__spacing"><strong>Personal Information</strong></p>
       <div className="input__wrap">
         <div className="input__label--container input__variable">
