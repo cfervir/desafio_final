@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Images from "../images";
 import NavLogged from "./NavLogged";
@@ -12,6 +12,13 @@ export default function Navbar() {
 
   const { isAuth } = useContext(ContextUser);
   const { searchHandler } = useContext(ContextData);
+
+  const navigate = useNavigate();
+
+  const goHome = e => {
+    e.preventDefault();
+    navigate('/');
+  }
   
   return (
     <nav className="nav">
@@ -31,7 +38,7 @@ export default function Navbar() {
 
           <div className="nav__links container--flex">
 
-            <form className="nav__form container--flex">
+            <form onSubmit={goHome} className="nav__form container--flex">
               <input type="text" className="input input__search" name="search" onChange={searchHandler} placeholder="What do you want?" />
               <button className="btn nav__search"><img className="nav__form--img" src={ Images.Search } alt="Search!" /></button>
             </form>

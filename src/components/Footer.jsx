@@ -1,7 +1,28 @@
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Images from "../images";
 
+import ContextUser from "../ContextUser";
+
 export default function Footer() {
+
+  const {setModalMsg, toggleModal } = useContext(ContextUser);
+  const [ addEmail, setAddEmail ] = useState();
+
+  const handleSuscribe = e => {
+    e.preventDefault();
+
+    if (addEmail !== '') {
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Nice!',
+          content: `${addEmail} has been added to our mailing list!`
+        }
+      ]);
+      setAddEmail('');
+    }
+  };
 
   return (
     <footer className="footer container--flex">
@@ -10,8 +31,8 @@ export default function Footer() {
         <div className="footer__news">
 
           <h4 className="footer__titles">Join our newsletter!</h4>
-          <form className="container--flex footer__form">
-            <input type="email" className="input input__news" name="email" placeholder="your@email.com" required />
+          <form onSubmit={handleSuscribe} className="container--flex footer__form">
+            <input type="email" className="input input__news" name="email" value={addEmail} onChange={(e) => setAddEmail(e.target.value)} placeholder="your@email.com" required />
             <button className="btn btn__img btn__teal"><img className="footer__form--img" src={ Images.Send } alt="Join us!" /></button>
           </form>
 

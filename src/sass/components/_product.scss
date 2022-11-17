@@ -125,4 +125,21 @@
     background: #fbfbfb;
     @include shdw;
   }
+
+  &__link {
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
+    background: rgb(45, 188, 162);
+    padding: 0.25em 0.5em;
+    border-radius: 0.5em;
+    margin-left: 0.25em;
+    transition: background 0.25s ease-in;
+    @include shdw-sm;
+
+    &:hover,
+    &:focus {
+      background: #6C2DBC;
+    }
+  }
 }

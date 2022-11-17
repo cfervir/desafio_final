@@ -1,15 +1,23 @@
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
+import NotFound from "./NotFound";
 import Images from "../images";
 import ContextData from "../ContextData";
 import ContextUser from "../ContextUser";
 
 export default function Product() {
 
-  const { isAuth } = useContext(ContextUser);
-  const { navData, toggleFav } = useContext(ContextData);
+  const { isAuth, toggleFav, isFav } = useContext(ContextUser);
+  const { navData } = useContext(ContextData);
   const { dataId } = useParams();
+
+  const findData = navData.find(data => data.id === dataId);
+  if (findData === undefined ) {
+    return (
+      <NotFound />
+    )
+  }
 
   return (
     <div className="container container__content">
@@ -19,9 +27,9 @@ export default function Product() {
           <div className="product__title--box container--flex">
             <div className="product__user--cont container--flex">
               <img className="product__user" src={ Images.User } alt="login" />
-              <h3 className="product__title">Created by { filtered.user }</h3>
+              <h3 className="product__title">Created by <Link to={`/users/${filtered.userId}`} className="product__link">{ filtered.user }</Link></h3>
             </div>
-            { isAuth.logged ? filtered.fav ? 
+            { isAuth.logged ? isFav(filtered.id) ? 
               <button className="btn btn__fav" onClick={ () => toggleFav(filtered.id) }>
                 <div className="product__fav--cont container--flex">
                   <span className="product__fav">Remove Fav</span>

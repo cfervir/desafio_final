@@ -31,7 +31,7 @@ export default function LoginForm( { title, subtitle } ) {
           setModalMsg([
             {
               title: 'Welcome back!',
-              content: `It's nice to have you back, ${findUser.name}!`
+              content: `Nice to see you again ${findUser.name}!`
             }
           ]);
         } else {
@@ -39,7 +39,7 @@ export default function LoginForm( { title, subtitle } ) {
           setModalMsg([
             {
               title: 'Ouch!',
-              content: "Wrong password. Try to remember it!"
+              content: "Wrong password. Try recovering your password?!"
             }
           ]);
         }
@@ -48,7 +48,7 @@ export default function LoginForm( { title, subtitle } ) {
         setModalMsg([
           {
             title: 'Oh no!',
-            content: `${email} does not exist! Try registering?`
+            content: `${email} does not exist!`
           }
         ]);
       }

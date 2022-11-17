@@ -8,8 +8,8 @@ import ContextUser from "../ContextUser";
 
 export default function AllProducts() {
 
-  const { isAuth, userData } = useContext(ContextUser);
-  const { navData, filterInput, toggleFav } = useContext(ContextData);
+  const { isAuth, toggleFav, isFav } = useContext(ContextUser);
+  const { navData, filterInput } = useContext(ContextData);
 
   const navigate = useNavigate();
 
@@ -21,11 +21,6 @@ export default function AllProducts() {
       return (data.title.toLowerCase()).includes(filterInput) || (data.user.toLowerCase()).includes(filterInput);
     }
   });
-
-  const isFav = id => {
-    const theUser = userData.find(e => e.id === isAuth.id);
-    return theUser.favs === undefined ? false : theUser.favs.includes(id);
-  };
 
   return (
     <>

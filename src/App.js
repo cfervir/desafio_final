@@ -58,6 +58,7 @@ function App() {
     setFilterInput(search);
   };
 
+  // Form Hook
   const useForm = (initialState = {}) => {
     const [values, setValues] = useState(initialState);
     const changeHandler = e => {
@@ -65,6 +66,39 @@ function App() {
       setValues(newValues);
     };
     return {values, changeHandler};
+  };
+
+  const toggleFav = imgId => {
+    // Find the user
+    const theUser = userData.find(e => e.id === isAuth.id);
+
+    let alteredUser = '';
+    if (theUser.favs === undefined) {
+      alteredUser = { ...theUser, favs: [imgId] };
+    } else {
+      const favIndex = theUser.favs.findIndex(e => e === imgId);
+      if (favIndex > -1) {
+        alteredUser = { ...theUser, favs: theUser.favs.filter(favId => favId !== imgId) };
+      } else {
+        alteredUser = { ...theUser, favs: theUser.favs.concat([imgId]) };
+      }
+    }
+    const newUserData = [...userData].filter(data => data.id !== isAuth.id);
+    setUserData([...newUserData, alteredUser]);
+  };
+
+  const isFav = id => {
+    const theUser = userData.find(e => e.id === isAuth.id);
+    return theUser.favs === undefined ? false : theUser.favs.includes(id);
+  };
+
+  const removeImg = id => {
+    const remove = navData.filter((items) => items.id !== id);
+    setNavData(remove);
+  };
+
+  const Private = ({ auth: { isAuth }, children }) => {
+    return isAuth.logged ? children : <Navigate to="/" />;
   };
 
   const submissions = "/Submissions.json";
@@ -90,44 +124,18 @@ function App() {
     obtainData(users, setUserData);
   }, []);
 
-  const toggleFav = imgId => {
-    // Find the user
-    const theUser = userData.find(e => e.id === isAuth.id);
-
-    let alteredUser = '';
-    if (theUser.favs === undefined) {
-      alteredUser = { ...theUser, favs: [imgId] };
-    } else {
-      const favIndex = theUser.favs.findIndex(e => e === imgId);
-      if (favIndex > -1) {
-        alteredUser = { ...theUser, favs: theUser.favs.filter(favId => favId !== imgId) };
-      } else {
-        alteredUser = { ...theUser, favs: theUser.favs.concat([imgId]) };
-      }
-    }
-    const newUserData = [...userData].filter(data => data.id !== isAuth.id);
-    setUserData([...newUserData, alteredUser]);
-  };
-
-  const removeImg = id => {
-    const remove = navData.filter((items) => items.id !== id);
-    setNavData(remove);
-  };
-
-  const Private = ({ auth: { isAuth }, children }) => {
-    return isAuth.logged ? children : <Navigate to="/" />;
-  };
-
   return (
     <div className="wrapper">
-      <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleModal }}>
-        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, toggleFav, removeImg }}>
+      <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleFav, isFav, toggleModal }}>
+        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, removeImg }}>
           <BrowserRouter>
             <Modal />
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/:dataUser" element={<UserGallery />} />
+              <Route path="/users" element={<Home />} />
+              <Route path="/users/:dataUser" element={<UserGallery />} />
+              <Route path="/gallery" element={<Home />} />
               <Route path="/gallery/:dataId" element={<Product />} />
               <Route path="/join" element={<Register />} />
               <Route path="/login" element={<Login />} />

@@ -45,7 +45,6 @@ export default function UserEditForm() {
         });
         setUserData(updateState);
 
-        // const findNames = navData.filter(e => e.userId === isAuth.id);
         const updateName = navData.map((newName) => {
           if (newName.userId === isAuth.id) {
             return { ...newName, user: values.name };
@@ -76,7 +75,7 @@ export default function UserEditForm() {
       setModalMsg([
         {
           title: 'Yikes!',
-          content: 'This email is already registered!'
+          content: `${values.email} is already registered!`
         }
       ]);
     }
@@ -131,7 +130,7 @@ export default function UserEditForm() {
         <div className="input__label--container input__variable">
           <label htmlFor="country" className="input__label input__dark--la">Country</label>
           <select className="input input__form input__dark" defaultValue={isAuth.country} onChange={changeHandler} name="country">
-            { isAuth.country === '' ? '' : <option value="">Choose one!</option> }
+            { isAuth.country ? '' : <option value="">Choose one!</option> }
             { countries.map(data => <option key={data}>{data}</option> )}
           </select>
         </div>
