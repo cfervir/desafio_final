@@ -6,7 +6,7 @@ import ContextData from "../ContextData";
 
 export default function UserAddNew() {
 
-  const [file, setFile] = useState();
+  const [ file, setFile ] = useState();
   const { useForm, isAuth, setModalMsg, toggleModal } = useContext(ContextUser);
   const { setNavData } = useContext(ContextData);
 
@@ -20,41 +20,51 @@ export default function UserAddNew() {
     setFile(newFile);
   }
 
-  const removeImg = (e) => {
+  const removeFile = (e) => {
     setFile();
   }
 
   const newPicture = (e) => {
     e.preventDefault();
-    
-    if (values.category === "Choose one!" || values.category === undefined) {
-      toggleModal();
-      setModalMsg([
-        {
-          title: 'Eeep!',
-          content: 'You need to choose a category!'
-        }
-      ]);
-    } else {
-        setNavData(currentArt => [...currentArt, {
-          user: isAuth.name,
-          userId: isAuth.id,
-          id: `${Date.now()}`,
-          img: file,
-          imgSmall: file,
-          title: values.title,
-          desc: values.desc,
-          category: values.category,
-          price: values.price
-        }
-      ])
-      navigate("/user");
 
+    if (file !== undefined) {
+      if (values.category === "Choose one!" || values.category === undefined) {
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Eeep!',
+            content: 'You need to choose a category!'
+          }
+        ]);
+      } else {
+          setNavData(currentArt => [...currentArt, {
+            user: isAuth.name,
+            userId: isAuth.id,
+            id: `${Date.now()}`,
+            img: file,
+            imgSmall: file,
+            title: values.title,
+            desc: values.desc,
+            category: values.category,
+            price: values.price
+          }
+        ])
+        navigate("/user");
+
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Nice!',
+            content: `${values.title} has been added!`
+          }
+        ]);
+      }
+    } else {
       toggleModal();
       setModalMsg([
         {
-          title: 'Nice!',
-          content: `${values.title} has been added!`
+          title: 'Ooops!',
+          content: 'The picture was removed, you need to add a new one!'
         }
       ]);
     }
@@ -90,7 +100,7 @@ export default function UserAddNew() {
       <div>
         <div className="input__upload container--flex">
           <div className="input__label--container input__upload">
-            <label htmlFor="file" className="input__label">Password</label>
+            <label htmlFor="file" className="input__label">Your file</label>
             <input type="file" accept=".jpg,.png" className="input input__form" name="file" required onChange={uploadFile} placeholder="Your file..." />
           </div>
         </div>
@@ -101,7 +111,7 @@ export default function UserAddNew() {
           { file === undefined ?
             <div className="input__image--prev">PREVIEW</div> :
             <div className="input__reset">
-              <span className="input__reset--remove" onClick={removeImg}>X</span>
+              <span className="input__reset--remove" onClick={removeFile}>X</span>
               <img src={file} alt="This will be uploaded!" />
             </div>
           }
