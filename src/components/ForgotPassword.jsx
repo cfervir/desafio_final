@@ -1,4 +1,5 @@
 import { useState, useContext } from "react"
+import { useNavigate } from "react-router-dom";
 
 import ContextUser from "../ContextUser";
 
@@ -6,6 +7,8 @@ export default function ForgotPassword({ title, subtitle }) {
 
   const { userData, toggleModal, setModalMsg } = useContext(ContextUser);
   const [ emailInput, setEmailInput ] = useState();
+
+  const navigate = useNavigate();
 
   const theUser = userData.find(e => e.email === emailInput);
 
@@ -22,6 +25,7 @@ export default function ForgotPassword({ title, subtitle }) {
           }
         ]);
         setEmailInput('');
+        navigate("/login");
       }
     } else {
       toggleModal();
@@ -40,7 +44,7 @@ export default function ForgotPassword({ title, subtitle }) {
       <p className="form__subtitle"> {subtitle} </p>
       <div className="input__label--container">
         <label htmlFor="register__email" className="input__label">Email</label>
-        <input type="text" className="input input__form" name="register__email" value={emailInput} onChange={(e) => setEmailInput(e.target.value)} placeholder="your@email.com" required />
+        <input type="text" className="input input__form" name="register__email" onChange={(e) => setEmailInput(e.target.value)} placeholder="your@email.com" required />
       </div>
       <button className="btn btn__purple btn__create">Reset Password</button>
     </form>

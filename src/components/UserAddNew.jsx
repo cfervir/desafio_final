@@ -86,7 +86,6 @@ export default function UserAddNew() {
           <select className="input input__form" name="category" required onChange={changeHandler}>
             <option>Choose one!</option>
             <option>Originals</option>
-            <option>Anime/Manga</option>
             <option>Fantasy</option>
             <option>Terror</option>
             <option>Movies</option>

@@ -5,38 +5,50 @@ import ContextUser from "../ContextUser";
 
 export default function RegisterForm( { title, subtitle } ) {
 
-  const { useForm, setUserData, setModalMsg, toggleModal } = useContext(ContextUser);
+  const { useForm, userData, setUserData, setModalMsg, toggleModal } = useContext(ContextUser);
   const navigate = useNavigate();
 
   const initialState = {};
   const { values, changeHandler } = useForm(initialState);
 
+  const repeatedEmail = userData.some(data => data.email === values.email);
+
   const addNew = (e) => {
     e.preventDefault();
 
-    if (values.pwd === values.pwdRepeat) {
-      setUserData(currentUsers => [...currentUsers, {
-          id: `u${Date.now()}`,
-          nick: values.nick,
-          email: (values.email).toLowerCase(),
-          name: values.name,
-          pwd: values.pwd
-        }
-      ])
-      navigate("/login");
-      toggleModal();
-      setModalMsg([
-        {
-          title: 'Hey captain!',
-          content: "It's nice to have you here!"
-        }
-      ]);
+    if (!repeatedEmail) {
+      if (values.pwd === values.pwdRepeat) {
+        setUserData(currentUsers => [...currentUsers, {
+            id: `u${Date.now()}`,
+            nick: values.nick,
+            email: (values.email).toLowerCase(),
+            name: values.name,
+            pwd: values.pwd
+          }
+        ])
+        navigate("/login");
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Hey captain!',
+            content: "It's nice to have you here!"
+          }
+        ]);
+      } else {
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Ouch!',
+            content: "These passwords don't match!"
+          }
+        ]);
+      }
     } else {
       toggleModal();
       setModalMsg([
         {
-          title: 'Ouch!',
-          content: "Your passwords don't match!"
+          title: 'Eeep!',
+          content: `${values.email} is already registered!`
         }
       ]);
     }

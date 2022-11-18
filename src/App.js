@@ -20,6 +20,8 @@ import User from './views/User';
 import UserGallery from './views/UserGallery';
 import UserEdit from './views/UserEdit';
 import Add from './views/Add';
+import Categories from './views/Categories';
+import Favorites from './views/Favorites';
 import About from './views/About';
 import Help from './views/Help';
 import EULA from './views/EULA';
@@ -137,6 +139,9 @@ function App() {
               <Route path="/users/:dataUser" element={<UserGallery />} />
               <Route path="/gallery" element={<Home />} />
               <Route path="/gallery/:dataId" element={<Product />} />
+              <Route path="/category/" element={<Home />} />
+              <Route path="/category/:category" element={<Categories />} />
+              <Route path="/category/favorites" element={<Favorites />} />
               <Route path="/join" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot" element={<Forgot />} />

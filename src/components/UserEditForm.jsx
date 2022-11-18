@@ -20,8 +20,8 @@ export default function UserEditForm() {
   };
   const { values, changeHandler } = useForm(initialState);
 
-  const removeUserEmail = userData.filter(data => data.email !== isAuth.email);
-  const repeatedEmail = removeUserEmail.some(data => data.email === values.email);
+  const removeUser = userData.filter(data => data.email !== isAuth.email);
+  const repeatedEmail = removeUser.some(data => data.email === values.email);
 
   const editUser = (e) => {
     e.preventDefault();

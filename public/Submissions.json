@@ -20,7 +20,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Amr-Miqdadi-01-small.jpg",
     "title": "Chimpanzee",
     "desc": "Chimpanzee Sitting on Wood",
-    "category": "originals",
+    "category": "movies",
     "source": "https://www.pexels.com/photo/chimpanzee-sitting-on-wood-735431/",
     "price": 3,
     "fav": false
@@ -111,7 +111,7 @@
     "imgSmall": "https://bigbadlion.com/desafiolatam/desafio_final/gallery/Rosivan-Morais-01-small.jpg",
     "title": "Eiffel Tower",
     "desc": "Eiffel Tower, Paris during Night Time",
-    "category": "originals",
+    "category": "movies",
     "source": "https://www.pexels.com/photo/eiffel-tower-paris-during-night-time-1780838/",
     "price": 5,
     "fav": false

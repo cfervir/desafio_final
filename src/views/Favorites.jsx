@@ -1,29 +1,31 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import CategoryList from "./CategoryList";
+import CategoryList from "../components/CategoryList";
+import NoCategory from "../components/NoCategory";
 import Images from "../images";
 import ContextData from "../ContextData";
 import ContextUser from "../ContextUser";
 
-export default function AllProducts() {
+export default function Favorites() {
 
-  const { isAuth, toggleFav, isFav } = useContext(ContextUser);
-  const { navData, filterInput } = useContext(ContextData);
-
+  const { isAuth, userData, toggleFav, isFav } = useContext(ContextUser);
+  const { navData } = useContext(ContextData);
   const navigate = useNavigate();
 
-  const filteredData = navData.filter((data) => {
-    if (filterInput === '' || filterInput === undefined) {
-      return data;
-    } else {
-      // Somehow this works!
-      return (data.title.toLowerCase()).includes(filterInput) || (data.user.toLowerCase()).includes(filterInput);
-    }
-  });
+  const findUser = userData.filter(data => data.id === isAuth.id);
+  const printFavorites = findUser.flatMap(data => data.favs);
+
+  const filteredData = navData.filter(data => printFavorites.includes(data.id));
+
+  if (filteredData.length === 0 ) {
+    return (
+      <NoCategory />
+    )
+  }
 
   return (
-    <>
+    <div className="container container__content">
       <CategoryList />
       <div className="gallery__wrap container--flex"> 
         {filteredData.map(content => (
@@ -52,6 +54,6 @@ export default function AllProducts() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   )
 }
