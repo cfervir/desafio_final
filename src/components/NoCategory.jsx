@@ -11,11 +11,11 @@ export default function NoCategory() {
   const findUser = userData.filter(data => data.id === isAuth.id);
   const printFavorites = findUser.flatMap(data => data.favs);
   
-  if (printFavorites.length === 0 && isAuth.logged ) {
+  if ((printFavorites.length === 0 || printFavorites[0] === undefined) && isAuth.logged ) {
     return (
       <div className="container container__content">
         <div>
-          <h2>Ooops!</h2>
+          <h2>Not yet!</h2>
           <p className="not-found">You need to add some favorites first!</p>
           <button className="btn btn__teal btn__back" onClick={ () => navigate(-1) }>Go Back</button>
         </div>

@@ -141,7 +141,7 @@ function App() {
               <Route path="/gallery/:dataId" element={<Product />} />
               <Route path="/category/" element={<Home />} />
               <Route path="/category/:category" element={<Categories />} />
-              <Route path="/category/favorites" element={<Favorites />} />
+              <Route path="/category/favorites" element={<Private auth={{isAuth}}> <Favorites /> </Private>} />
               <Route path="/join" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot" element={<Forgot />} />

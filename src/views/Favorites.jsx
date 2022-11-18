@@ -18,6 +18,9 @@ export default function Favorites() {
 
   const filteredData = navData.filter(data => printFavorites.includes(data.id));
 
+  console.log('Printing this');
+  console.log(filteredData);
+
   if (filteredData.length === 0 ) {
     return (
       <NoCategory />
