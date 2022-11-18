@@ -189,7 +189,8 @@
       border-bottom-left-radius: 0.5em;
     }
   }
-}
-.lala {
-  position: relative;
+
+  &__error {
+    margin: 1em 0;
+  }
 }

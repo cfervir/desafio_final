@@ -39,7 +39,7 @@ export default function Navbar() {
           <div className="nav__links container--flex">
 
             <form onSubmit={goHome} className="nav__form container--flex">
-              <input type="text" className="input input__search" name="search" onChange={searchHandler} placeholder="What do you want?" />
+              <input type="text" className="input input__search" name="search" onChange={searchHandler} placeholder="Looking for something?" />
               <button className="btn nav__search"><img className="nav__form--img" src={ Images.Search } alt="Search!" /></button>
             </form>
             <Link className="nav__cart" to="/cart">

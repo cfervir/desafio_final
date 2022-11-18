@@ -26,7 +26,12 @@ export default function AllProducts() {
     <>
       <CategoryList />
       <div className="gallery__wrap container--flex"> 
-        {filteredData.map(content => (
+        { filteredData.length === 0 ? 
+          <div className="gallery__error">
+            <h2>Ouch!</h2>
+            <p className="not-found">Your search had no results, try something else?</p>
+          </div>
+          : filteredData.map(content => (
           <div className="gallery__card" key={content.id}>
             <div className="gallery__fav">
               { isAuth.logged ? isFav(content.id) ? 

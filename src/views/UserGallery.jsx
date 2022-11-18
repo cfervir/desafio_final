@@ -14,9 +14,7 @@ export default function UserGallery() {
   const { dataUser } = useParams();
 
   const navigate = useNavigate();
-
   const theUser = navData.find(e => e.userId === dataUser);
-  console.log(theUser)
 
   const findData = navData.find(data => data.userId === dataUser);
   if (findData === undefined ) {
