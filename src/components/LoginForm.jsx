@@ -16,47 +16,43 @@ export default function LoginForm( { title, subtitle } ) {
     const email = (values.email).toLowerCase();
     const pwd = values.password;
 
-    if (!email && !pwd) {
-      console.log('Llene datos');
-    } else {
-      let findUser = userData.find(e => e.email === email);
-      if ( findUser !== undefined ) {
-        if (findUser.pwd === pwd) {
-          setIsAuth({
-            ...findUser,
-            logged: true
-          })
-          navigate("/user");
-          toggleModal();
-          setModalMsg([
-            {
-              title: 'Welcome back!',
-              content: `Nice to see you again ${findUser.name}!`
-            }
-          ]);
-        } else {
-          toggleModal();
-          setModalMsg([
-            {
-              title: 'Ouch!',
-              content: "Wrong password. Try recovering your password?!"
-            }
-          ]);
-        }
+    const findUser = userData.find(e => e.email === email);
+    if ( findUser !== undefined ) {
+      if (findUser.pwd === pwd) {
+        setIsAuth({
+          ...findUser,
+          logged: true
+        })
+        navigate("/user");
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Welcome back!',
+            content: `Nice to see you again ${findUser.name}!`
+          }
+        ]);
       } else {
         toggleModal();
         setModalMsg([
           {
-            title: 'Oh no!',
-            content: `${email} does not exist!`
+            title: 'Ouch!',
+            content: "Wrong password. Try recovering your password?!"
           }
         ]);
       }
+    } else {
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Oh no!',
+          content: `${email} does not exist!`
+        }
+      ]);
     }
   }
 
   return (
-    <form name="login__form">
+    <form name="login__form" onSubmit={ login }>
       <h3 className="form__title"> { title } </h3>
       <p className="form__subtitle"> { subtitle } </p>
       <div className="input__label--container">
@@ -67,7 +63,7 @@ export default function LoginForm( { title, subtitle } ) {
         <label htmlFor="password" className="input__label">Password</label>
         <input type="password" className="input input__form" name="password" onChange={changeHandler} value={values.password} placeholder="Password" required />
       </div>
-      <button className="btn btn__purple" onClick={ login }>Log In</button>
+      <button className="btn btn__purple">Log In</button>
       <p className="form__forgot">forgot your password? <Link className="form__purple" to="/forgot">click here.</Link></p>
     </form>
   )

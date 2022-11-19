@@ -15,7 +15,10 @@ export default function Sorting() {
       4: 'price',
       5: 'priceDesc'
     };
+
     const orderProperty = order[types];
+    console.log(orderProperty);
+
     const sorted = navData.slice().sort((a, b) => {
       if (orderProperty === 'idDesc') {
         return b.id - a.id

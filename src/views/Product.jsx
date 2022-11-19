@@ -8,7 +8,7 @@ import ContextUser from "../ContextUser";
 
 export default function Product() {
 
-  const { isAuth, toggleFav, isFav } = useContext(ContextUser);
+  const { isAuth, toggleFav, isFav, addToCart } = useContext(ContextUser);
   const { navData } = useContext(ContextData);
   const { dataId } = useParams();
 
@@ -51,7 +51,7 @@ export default function Product() {
               <div className="product__price container--flex">
                 <h2>{ filtered.price }</h2>
                 <p className="product__currency">USD</p>
-                <button className="btn btn__blue btn__add">Add</button>
+                <button className="btn btn__blue btn__add" onClick={() => addToCart(filtered.id)}>Add</button>
               </div>
             </div>
           </div>

@@ -7,7 +7,7 @@ import Images from "../images";
 import ContextData from "../ContextData";
 import ContextUser from "../ContextUser";
 
-export default function Categories({ fav }) {
+export default function Categories() {
 
   const { isAuth, toggleFav, isFav } = useContext(ContextUser);
   const { navData } = useContext(ContextData);

@@ -47,11 +47,15 @@ function App() {
 
   // User Information
   const [userData, setUserData] = useState([]);
+  console.log(userData);
 
   // Authentication
   const [isAuth, setIsAuth] = useState({
     logged: false
   });
+
+  // Cart Items
+  const [cartItems, setCartItems] = useState([])
 
   // Filter
   const [filterInput, setFilterInput] = useState();
@@ -90,8 +94,66 @@ function App() {
   };
 
   const isFav = id => {
-    const theUser = userData.find(e => e.id === isAuth.id);
-    return theUser.favs === undefined ? false : theUser.favs.includes(id);
+    // const findUser = userData.find(e => e.id === isAuth.id);
+    // return findUser.favs === undefined ? false : findUser.favs.includes(id);
+    return false;
+  };
+
+  const addToCart = (productId) => {
+    if (isAuth.logged !== false) {
+      const findUser = userData.find(e => e.id === isAuth.id);
+      const product = navData.find(item => item.id === productId);
+
+      let modifiedUser = '';
+      if (findUser.cart === undefined) {
+        const productToInsert = { 
+          id: productId,
+          price: product.price,
+          qty: 1
+        }
+        if (findUser.cart.id === productId) {
+          modifiedUser = { ...findUser, ...modifiedUser, cart: [{productToInsert}] };
+        } else {
+          modifiedUser = { ...findUser, ...modifiedUser, cart: [{productToInsert}] };
+        }
+      } else {
+        const productToInsert = { 
+          id: productId,
+          price: findUser.cart[0].price + product.price,
+          qty: findUser.cart[0].qty + 1
+        }
+        modifiedUser = { ...findUser, ...modifiedUser, cart: [productToInsert]};
+      }
+      // } else {
+      //   console.log('Here!');
+      // }
+      // } else {
+      //   console.log(`I'm here!`);
+      //   const cartIndex = findUser.cart.findIndex(e => e.product === productId);
+      //   console.log(cartIndex);
+      //   if (cartIndex > -1) {
+      //     alteredUser = { ...findUser, cart: [findUser.cart.filter(product => product.id !== productId)] };
+      //   } else {
+      //     alteredUser = { ...findUser, cart: [findUser.cart.concat([{ product: productId, qty: 1 + 1, total: product.price + product.price }])] };
+      //     //alteredUser = { ...findUser, cart: [{ product: productId, qty: 1 + 1, total: product.price + product.price }]};
+      //   }
+        // alteredUser = { ...alteredUser, cart: [alteredUser.cart.filter(product => product.id !== productId)] };
+        // const findIndex = findUser.cart.findIndex(findUser.cart);
+        // console.log(findIndex);
+        const otherUsers = userData.filter(data => data.id !== isAuth.id);
+        setUserData([...otherUsers, modifiedUser]);
+        console.log('At the end!');
+    //   } else {
+    //     const cartIndex = findUser.cart.findIndex(e => e.product === productId);
+    //     if (cartIndex > -1) {
+    //       alteredUser = { ...findUser, cart: [findUser.favs.filter(favId => favId !== productId)] };
+    //     } else {
+    //       alteredUser = { ...findUser, cart: [findUser.favs.concat([productId])] };
+    //     }
+    //   }
+    //   const newUserData = [...userData].filter(data => data.id !== isAuth.id);
+    //   setUserData([...newUserData, alteredUser]);
+    } 
   };
 
   const removeImg = id => {
@@ -128,7 +190,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      <ContextUser.Provider value={{ userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleFav, isFav, toggleModal }}>
+      <ContextUser.Provider value={{userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleFav, isFav, toggleModal, addToCart }}>
         <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, removeImg }}>
           <BrowserRouter>
             <Modal />
