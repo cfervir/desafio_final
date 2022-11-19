@@ -12,10 +12,12 @@
 
   &__wrapper {
     gap: 0.5em;
-    // margin-bottom: 1em;
+    flex-wrap: wrap;
+    justify-content: center;
 
     @media (min-width: 680px) {
       margin-bottom: 0;
+      flex-wrap: initial;
     }
   }
 
@@ -29,6 +31,10 @@
     border-radius: 0.5em;
     margin-left: 0.25em;
     transition: background 0.25s ease-in;
+
+    width: 45%;
+    justify-content: center;
+
     @include shdw-sm;
 
     &:hover,
