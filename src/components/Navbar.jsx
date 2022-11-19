@@ -4,13 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Images from "../images";
 import NavLogged from "./NavLogged";
 import NavOut from "./NavOut";
+import { sumQtyObj } from "../helpers";
 
 import ContextUser from "../ContextUser";
 import ContextData from "../ContextData";
 
 export default function Navbar() {
 
-  const { isAuth } = useContext(ContextUser);
+  const { isAuth, cartItems } = useContext(ContextUser);
   const { searchHandler } = useContext(ContextData);
 
   const navigate = useNavigate();
@@ -38,13 +39,13 @@ export default function Navbar() {
 
           <div className="nav__links container--flex">
 
-            <form onSubmit={goHome} className="nav__form container--flex">
-              <input type="text" className="input input__search" name="search" onChange={searchHandler} placeholder="Looking for something?" />
+            <form onSubmit={ goHome } className="nav__form container--flex">
+              <input type="text" className="input input__search" name="search" onChange={ searchHandler } placeholder="Looking for something?" />
               <button className="btn nav__search"><img className="nav__form--img" src={ Images.Search } alt="Search!" /></button>
             </form>
             <Link className="nav__cart" to="/cart">
               <img className="nav__cart--img" src={ Images.Cart } alt="Cart" />
-              <span className="nav__cart--value">X</span>
+              <span className="nav__cart--value">{ isAuth.logged ? sumQtyObj(cartItems) : 'X' }</span>
             </Link>
             {isAuth.logged ? <NavLogged /> : <NavOut />}
           </div>          

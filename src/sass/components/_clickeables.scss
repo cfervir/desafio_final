@@ -57,6 +57,10 @@
     background: #EB2D2E;
   }
 
+  &__darkpurple {
+    background: #7229a9;
+  }
+
   &__mag {
     background: #DE00A0;
     margin-left: 1.125em;
@@ -152,6 +156,24 @@
 
   &__create {
     margin: 1.5em auto 0.5em;
+  }
+
+  &__cart {
+    font-size: 0.875rem;
+    height: 1.65rem;
+    width: 1.65rem;
+    margin-right: 2px;
+    @include shdw-sm;
+  }
+
+  &__delete {
+    font-size: 0.875rem;
+    line-height: 1;
+    color: #ffffff;
+    width: 6rem;
+    margin-bottom: 2px;
+    padding: 0.375em 0 0.313em;
+    @include shdw-sm;
   }
 }
 

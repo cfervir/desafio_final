@@ -1,49 +1,44 @@
 import { useContext } from "react";
-
 import ContextData from "../ContextData";
+
+const order = [
+  { value: 'id', description: 'Default' },
+  { value: 'idDesc', description: 'Latest' },
+  { value: 'title', description: 'Title [A-Z]' },
+  { value: 'titleDesc', description: 'Title [Z-A]' },
+  { value: 'price', description: 'Price $▼' },
+  { value: 'priceDesc', description: 'Price $▲' },
+];
 
 export default function Sorting() {
 
-  const { navData, setNavData } = useContext(ContextData);
-
-  const sortData = (types) => {
-    const order = {
-      0: 'id',
-      1: 'idDesc',
-      2: 'title',
-      3: 'titleDesc',
-      4: 'price',
-      5: 'priceDesc'
-    };
-
-    const orderProperty = order[types];
-    console.log(orderProperty);
-
+  const { navData, setNavData, sortingType, setSortingType } = useContext(ContextData);
+  
+  const sortData = (sort) => {
     const sorted = navData.slice().sort((a, b) => {
-      if (orderProperty === 'idDesc') {
-        return b.id - a.id
-      } else if (orderProperty === 'title') {
-        return a[orderProperty].localeCompare(b[orderProperty])
-      } else if (orderProperty === 'titleDesc') {
-        return b.title.localeCompare(a.title)
-      } else if (orderProperty === 'priceDesc') {
-        return b.price - a.price
-      } else {
-        return a[orderProperty] - b[orderProperty]
+      switch (sort) {
+        case 'idDesc':
+          return b.id - a.id
+        case 'title':
+          return a.title.localeCompare(b.title)
+        case 'titleDesc':
+          return b.title.localeCompare(a.title)
+        case 'price':
+          return a.price - b.price
+        case 'priceDesc':
+          return b.price - a.price
+        default:
+          return a.id - b.id
       }
     });
+    setSortingType(sort);
     setNavData(sorted);
-  };
+  }
 
   return (
     <div>
-      <select className="select__sorting" defaultValue={0} onChange={(e) => sortData(e.target.value)}>
-        <option value={0}>Default</option>
-        <option value={1}>Latest</option>
-        <option value={2}>Title [A-Z]</option>
-        <option value={3}>Title [Z-A]</option>
-        <option value={4}>Price $▼</option>
-        <option value={5}>Price $▲</option>
+      <select className="select__sorting" value={sortingType} onChange={(e) => sortData(e.target.value)}>
+        { order.map(el => (<option value={ el.value } key={ el.value }>{ el.description }</option>)) }
       </select>
     </div>
   )

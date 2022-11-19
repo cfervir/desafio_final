@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import Sorting from './Sorting';
 import ContextUser from '../ContextUser';
 
-export default function CategoryList() {
-
+export default function CategoryList({ notHere }) {
+  
   const { isAuth } = useContext(ContextUser);
 
   const setActiveClass = ({ isActive }) => `categories__link container--flex ${( isActive ? 'categories--active' : '')}`;
@@ -31,7 +31,7 @@ export default function CategoryList() {
           </NavLink>
           : '' }
       </div>
-      <Sorting />
+      { !notHere ? <Sorting /> : '' }
     </div>
   )
 }

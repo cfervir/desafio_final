@@ -47,7 +47,6 @@ function App() {
 
   // User Information
   const [userData, setUserData] = useState([]);
-  console.log(userData);
 
   // Authentication
   const [isAuth, setIsAuth] = useState({
@@ -63,6 +62,9 @@ function App() {
     let search = e.target.value.toLowerCase();
     setFilterInput(search);
   };
+
+  // Sorting
+  const [sortingType, setSortingType] = useState('id')
 
   // Form Hook
   const useForm = (initialState = {}) => {
@@ -86,7 +88,7 @@ function App() {
       if (favIndex > -1) {
         alteredUser = { ...theUser, favs: theUser.favs.filter(favId => favId !== imgId) };
       } else {
-        alteredUser = { ...theUser, favs: theUser.favs.concat([imgId]) };
+        alteredUser = { ...theUser, favs: [...theUser.favs, imgId] };
       }
     }
     const newUserData = [...userData].filter(data => data.id !== isAuth.id);
@@ -94,66 +96,96 @@ function App() {
   };
 
   const isFav = id => {
-    // const findUser = userData.find(e => e.id === isAuth.id);
-    // return findUser.favs === undefined ? false : findUser.favs.includes(id);
-    return false;
+    const findUser = userData.find(e => e.id === isAuth.id);
+    return findUser.favs === undefined ? false : findUser.favs.includes(id);
   };
 
-  const addToCart = (productId) => {
-    if (isAuth.logged !== false) {
-      const findUser = userData.find(e => e.id === isAuth.id);
-      const product = navData.find(item => item.id === productId);
+  // Cart with Map
+  // const addToCart = (productId) => {
+  //   if (isAuth.logged !== false) {
+  //     const singleProduct = navData.find(item => item.id === productId);
+  //     const productExists = cartItems.find(item => item.id === productId);
+  //     if (productExists) {
+  //       setCartItems(
+  //         cartItems.map(item =>
+  //           item.id === productId ? { ...productExists, total: productExists.total + singleProduct.price, qty: productExists.qty + 1 } : item
+  //         )
+  //       );
+  //     } else {
+  //       setCartItems([...cartItems, { 
+  //         id: productId,
+  //         url: singleProduct.imgSmall,
+  //         title: singleProduct.title,
+  //         author: singleProduct.user,
+  //         price: singleProduct.price,
+  //         total: singleProduct.price,
+  //         qty: 1
+  //       }]);
+  //     }
+  //   } else {
+  //     toggleModal();
+  //     setModalMsg([
+  //       {
+  //         title: 'Ooops!',
+  //         content: 'You need to be logged in order to add items!'
+  //       }
+  //     ]);
+  //   }
+  // };
 
-      let modifiedUser = '';
-      if (findUser.cart === undefined) {
-        const productToInsert = { 
+  // const removeFromCart = (productId) => {
+  //   const singleProduct = navData.find(item => item.id === productId);
+  //   const productExists = cartItems.find(item => item.id === productId);
+  //   if (productExists === undefined) {
+  //     setCartItems(cartItems);
+  //   } else if (productExists.qty === 1) {
+  //     setCartItems(cartItems.filter(remove => remove.id !== productId));
+  //   } else {
+  //     setCartItems(
+  //       cartItems.map(removeNow =>
+  //         removeNow.id === productId ? { ...productExists, qty: productExists.qty - 1, total: productExists.total - singleProduct.price } : removeNow
+  //       )
+  //     );
+  //   }
+  // };
+
+  // Cart with Objects, it works but no idea how to use it!
+  const addToCart = (productId) => {
+    if (isAuth.logged) {
+      const singleProduct = navData.find(item => item.id === productId);
+      setCartItems({
+        ...cartItems,
+        [productId]: {
+          url: singleProduct.imgSmall,
+          title: singleProduct.title,
+          author: singleProduct.user,
+          price: singleProduct.price,
           id: productId,
-          price: product.price,
-          qty: 1
+          qty: (cartItems[productId]?.qty ?? 0) + 1,
+          total: (cartItems[productId]?.total ?? 0) + singleProduct.price,
         }
-        if (findUser.cart.id === productId) {
-          modifiedUser = { ...findUser, ...modifiedUser, cart: [{productToInsert}] };
-        } else {
-          modifiedUser = { ...findUser, ...modifiedUser, cart: [{productToInsert}] };
+      })
+    } else {
+      toggleModal();
+      setModalMsg([
+        {
+          title: 'Ooops!',
+          content: 'You need to be logged in order to add items!'
         }
-      } else {
-        const productToInsert = { 
-          id: productId,
-          price: findUser.cart[0].price + product.price,
-          qty: findUser.cart[0].qty + 1
-        }
-        modifiedUser = { ...findUser, ...modifiedUser, cart: [productToInsert]};
+      ]);
+    }
+  };
+
+  const removeFromCart = (productId) => {
+    const newCartItems = { ...cartItems }
+    if (newCartItems[productId]) {
+      newCartItems[productId].qty-=1;
+      newCartItems[productId].total-= newCartItems[productId].price?? 0;
+      if (newCartItems[productId].qty === 0) {
+        delete newCartItems[productId]
       }
-      // } else {
-      //   console.log('Here!');
-      // }
-      // } else {
-      //   console.log(`I'm here!`);
-      //   const cartIndex = findUser.cart.findIndex(e => e.product === productId);
-      //   console.log(cartIndex);
-      //   if (cartIndex > -1) {
-      //     alteredUser = { ...findUser, cart: [findUser.cart.filter(product => product.id !== productId)] };
-      //   } else {
-      //     alteredUser = { ...findUser, cart: [findUser.cart.concat([{ product: productId, qty: 1 + 1, total: product.price + product.price }])] };
-      //     //alteredUser = { ...findUser, cart: [{ product: productId, qty: 1 + 1, total: product.price + product.price }]};
-      //   }
-        // alteredUser = { ...alteredUser, cart: [alteredUser.cart.filter(product => product.id !== productId)] };
-        // const findIndex = findUser.cart.findIndex(findUser.cart);
-        // console.log(findIndex);
-        const otherUsers = userData.filter(data => data.id !== isAuth.id);
-        setUserData([...otherUsers, modifiedUser]);
-        console.log('At the end!');
-    //   } else {
-    //     const cartIndex = findUser.cart.findIndex(e => e.product === productId);
-    //     if (cartIndex > -1) {
-    //       alteredUser = { ...findUser, cart: [findUser.favs.filter(favId => favId !== productId)] };
-    //     } else {
-    //       alteredUser = { ...findUser, cart: [findUser.favs.concat([productId])] };
-    //     }
-    //   }
-    //   const newUserData = [...userData].filter(data => data.id !== isAuth.id);
-    //   setUserData([...newUserData, alteredUser]);
-    } 
+      setCartItems(newCartItems)
+    }
   };
 
   const removeImg = id => {
@@ -190,8 +222,8 @@ function App() {
 
   return (
     <div className="wrapper">
-      <ContextUser.Provider value={{userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleFav, isFav, toggleModal, addToCart }}>
-        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, removeImg }}>
+      <ContextUser.Provider value={{userData, setUserData, isAuth, setIsAuth, useForm, modal, modalMsg, setModalMsg, toggleFav, isFav, toggleModal, addToCart, removeFromCart, cartItems, setCartItems }}>
+        <ContextData.Provider value={{ navData, setNavData, filterInput, setFilterInput, searchHandler, removeImg, sortingType, setSortingType }}>
           <BrowserRouter>
             <Modal />
             <Navbar />

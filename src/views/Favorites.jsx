@@ -13,10 +13,18 @@ export default function Favorites() {
   const { navData } = useContext(ContextData);
   const navigate = useNavigate();
 
-  const findUser = userData.filter(data => data.id === isAuth.id);
-  const printFavorites = findUser.flatMap(data => data.favs);
+  const findUser = userData.find(data => data.id === isAuth.id);
+  const filteredData = findUser.favs ? navData.filter(data => findUser.favs.includes(data.id)) : [];
 
-  const filteredData = navData.filter(data => printFavorites.includes(data.id));
+  // const filteredData = navData.filter(data => {
+  //   if (data.length === 0) {
+  //     return console.log('lala')
+  //   } else if (data.category === category) {
+  //     return data.category === category;
+  //   } else {
+  //     return printFavorites.includes(data.id);
+  //   }
+  // })
 
   if (filteredData.length === 0 ) {
     return (
@@ -56,4 +64,4 @@ export default function Favorites() {
       </div>
     </div>
   )
-}
+};

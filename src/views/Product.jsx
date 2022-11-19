@@ -8,7 +8,7 @@ import ContextUser from "../ContextUser";
 
 export default function Product() {
 
-  const { isAuth, toggleFav, isFav, addToCart } = useContext(ContextUser);
+  const { isAuth, toggleFav, isFav, addToCart, removeFromCart } = useContext(ContextUser);
   const { navData } = useContext(ContextData);
   const { dataId } = useParams();
 
@@ -49,9 +49,13 @@ export default function Product() {
             <div className="product__final container--flex">
               <p className="product__description">{ filtered.desc }</p>
               <div className="product__price container--flex">
-                <h2>{ filtered.price }</h2>
+                <div className="container--flex">
+                  <p><strong>$</strong></p>
+                  <h2>{ filtered.price }</h2>
+                </div>
                 <p className="product__currency">USD</p>
                 <button className="btn btn__blue btn__add" onClick={() => addToCart(filtered.id)}>Add</button>
+                <button className="btn btn__red btn__add" onClick={() => removeFromCart(filtered.id)}>Remove</button>
               </div>
             </div>
           </div>
