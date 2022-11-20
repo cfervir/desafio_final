@@ -43,10 +43,12 @@ export default function Navbar() {
               <input type="text" className="input input__search" name="search" onChange={ searchHandler } placeholder="Looking for something?" />
               <button className="btn nav__search"><img className="nav__form--img" src={ Images.Search } alt="Search!" /></button>
             </form>
-            <Link className="nav__cart" to="/cart">
-              <img className="nav__cart--img" src={ Images.Cart } alt="Cart" />
-              <span className="nav__cart--value">{ isAuth.logged ? sumQtyObj(cartItems) : 'X' }</span>
-            </Link>
+            { isAuth.logged ?
+              <Link className="nav__cart" to="/cart">
+                <img className="nav__cart--img" src={ Images.Cart } alt="Cart" />
+                <span className="nav__cart--value">{ sumQtyObj(cartItems) }</span>
+              </Link>
+             : ''}
             {isAuth.logged ? <NavLogged /> : <NavOut />}
           </div>          
         </div>

@@ -9,22 +9,12 @@ import ContextUser from "../ContextUser";
 
 export default function Favorites() {
 
-  const { isAuth, userData, toggleFav, isFav } = useContext(ContextUser);
+  const { isAuth, userData, toggleFav, isFav, addToCart } = useContext(ContextUser);
   const { navData } = useContext(ContextData);
   const navigate = useNavigate();
 
   const findUser = userData.find(data => data.id === isAuth.id);
   const filteredData = findUser.favs ? navData.filter(data => findUser.favs.includes(data.id)) : [];
-
-  // const filteredData = navData.filter(data => {
-  //   if (data.length === 0) {
-  //     return console.log('lala')
-  //   } else if (data.category === category) {
-  //     return data.category === category;
-  //   } else {
-  //     return printFavorites.includes(data.id);
-  //   }
-  // })
 
   if (filteredData.length === 0 ) {
     return (
@@ -55,9 +45,16 @@ export default function Favorites() {
               <h3 className="gallery__title">{ content.title }</h3>
               <p className="gallery__author">{`By ${ content.user }`}</p>
             </div>
-            <div className="gallery__price container--flex">
-              <h2><span className="gallery__price--sm">$</span>{ content.price }</h2>
-              <p>USD</p>
+            <div className="gallery__priceAdd container--flex">
+              { isAuth.logged ?
+                <div className="gallery__add container--flex" onClick={() => addToCart(content.id)}>
+                  <span className="gallery__add--decor">Add!</span>
+                </div>
+              : '' }
+              <div className="gallery__price container--flex">
+                <h2><span className="gallery__price--sm">$</span>{ content.price }</h2>
+                <p>USD</p>
+              </div>
             </div>
           </div>
         ))}

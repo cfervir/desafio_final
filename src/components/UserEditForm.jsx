@@ -20,6 +20,8 @@ export default function UserEditForm() {
   };
   const { values, changeHandler } = useForm(initialState);
 
+  const verifications = (isAuth.street === undefined || isAuth.block === undefined || isAuth.city === undefined || isAuth.country === undefined );
+
   const removeUser = userData.filter(data => data.email !== isAuth.email);
   const repeatedEmail = removeUser.some(data => data.email === values.email);
 
@@ -113,7 +115,7 @@ export default function UserEditForm() {
             className="input input__form input__dark"
             name="street"
             disabled
-            defaultValue={ isAuth.street === undefined ? 'No address yet!' : `${isAuth.street} ${isAuth.block}, ${isAuth.city}. ${isAuth.country}.`}
+            defaultValue={ verifications ? 'No address yet!' : `${isAuth.street} ${isAuth.block}, ${isAuth.city}. ${isAuth.country}.`}
           />
       </div> 
       <div className="input__wrap">
@@ -137,17 +139,12 @@ export default function UserEditForm() {
           </select>
         </div>
       </div>
-
-      {/* <div className="input__buttons container--flex">
-        <button className="btn btn__width btn__red btn__remove">Remove</button>
-        <button className="btn btn__width btn__blue btn__add">Add</button>
-      </div> */}
-
       <p className="user__spacing"><strong>Your password</strong></p>
       <div className="input__label--container input__password">
         <label htmlFor="pwd" className="input__label input__dark--la">Password</label>
         <input type="password" className="input input__form input__dark" name="pwd" onChange={changeHandler} placeholder="Confirm password" />
       </div>
+      
       {/* <div className="input__wrap">
         <div className="input__label--container input__variable">
           <label htmlFor="new__pwd" className="input__label input__dark--la">New Password</label>

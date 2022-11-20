@@ -27,6 +27,7 @@
   &__teal,
   &__blue,
   &__red,
+  &__green,
   &__mag {
     font-size: 1.125rem;
     color: #ffffff;
@@ -59,6 +60,10 @@
 
   &__darkpurple {
     background: #7229a9;
+  }
+
+  &__green {
+    background: #7CDE00;
   }
 
   &__mag {
@@ -129,6 +134,18 @@
     margin: 0;
   }
 
+  &__pay {
+    padding: 0.75em;
+    width: 100%;
+    max-width: 20rem;
+    margin-top: 0.75em;
+
+    @media (min-width: 650px) {
+      margin-top: 0;
+      max-width: 16rem;
+    }
+  }
+
   &__back {
     margin-top: 0.5em;
   }
@@ -167,13 +184,35 @@
   }
 
   &__delete {
-    font-size: 0.875rem;
-    line-height: 1;
+    // font-size: 0.875rem;
+    // line-height: 1;
+    // color: #ffffff;
+    // width: 6rem;
+    // margin-bottom: 2px;
+    // padding: 0.375em 0 0.313em;
+    // @include shdw-sm;
+
+    cursor: pointer;
+    background: #EB2D2E;
     color: #ffffff;
-    width: 6rem;
-    margin-bottom: 2px;
-    padding: 0.375em 0 0.313em;
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 1;
+    border-radius: 1em;
+    height: 1.25rem;
+    width: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
     @include shdw-sm;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow;
+    }
   }
 }
 

@@ -1,14 +1,26 @@
+@use '../abstracts' as *;
+
 .cart {
-  gap: 1em;
+  gap: 1.5em;
   flex-direction: column;
   text-align: left;
   line-height: 1.2;
 
+  @media (min-width: 650px) {
+    width: 80%;
+    margin: 0 auto;
+  }
+
   &__content {
+    position: relative;
     gap: 0.75em;
     flex-direction: column;
     width: 100%;
     justify-content: space-between;
+
+    &--first {
+      width: 100%;
+    }
 
     @media (min-width: 650px) {
       flex-direction: row;
@@ -18,6 +30,7 @@
   &__product {
     align-self: flex-start;
     width: 100%;
+    position: relative;
 
     @media (min-width: 650px) {
       width: 50%;
@@ -38,17 +51,171 @@
 
   &__titles {
     margin-left: 0.75em;
+
+    & p:last-child {
+      margin-top: 0.25em;
+      font-size: 0.875rem;
+    }
   }
 
   &__subtotal {
+    flex-direction: row-reverse;
     align-self: flex-end;
+
+    @media (min-width: 650px) {
+      flex-direction: column-reverse;
+    }
   }
 
   &__buttons {
     font-weight: 700;
+    line-height: 1;
+    text-align: center;
     align-items: center;
     justify-content: space-between;
+    min-width: 6.5rem;
+    position: relative;
+
+    &--sm {
+      font-size: 0.5rem;
+      font-family: monospace;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 650px) {
+      min-width: 6.5rem;
+    }
+  }
+
+  &__remove {
+    position: relative;
+    margin-right: 0.75em;
+  }
+
+  &__price {
+    line-height: 1;
+    justify-content: center;
+    text-align: center;
+    padding: 0.313em 0.5em 0.25em;
     min-width: 6rem;
-    margin-bottom: 0.5em;
+    background: rgb(45, 188, 162);
+    border-radius: 0.5em;
+    color: #ffffff;
+    margin: 0em 0em 0em 0.75em;
+    @include shdw-sm;
+
+    & p:last-child {
+      margin-left: 0.25em;
+    }
+
+    &--final {
+      margin: 0em 0em 0em 0.25em;
+      font-size: 1.125em;
+      background: #6C2DBC;
+    }
+
+    @media (min-width: 650px) {
+      min-width: 6.5rem;
+      margin: 0.5em 0em 0em 0em;
+
+      &--final {
+        margin: 0em 0em 0em 0.25em;
+      }
+    }
+  }
+
+  &__form {
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.75em;
+    flex-direction: column;
+
+    @media (min-width: 680px) {
+      gap: 0;
+      margin-left: 3.25rem;
+      //flex-direction: row;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    position: relative;
+    @include t-trns;
+
+    &:hover,
+    &:focus {
+      @include grow-sm;
+    }
+  }
+
+  &__userInputs {
+    width: 100%;
+    align-self: flex-start;
+
+    @media (min-width: 680px) {
+      width: 85%;
+    }
+  }
+
+  &__total {
+    width: 100%;
+    text-align: right;
+    align-self: flex-end;
+
+    @media (min-width: 680px) {
+      // width: 25%;
+    }
+
+    &--msg {
+      position: relative;
+    }
+    
+    &--msg:hover &--msg-box,
+    &--msg:focus &--msg-box {
+      width: fit-content;
+      text-align: center;
+      display: block;
+      // top: -0.438em;
+      // box-shadow: 0px 0px 0px 3px inset rgb(190 0 0),
+      //             0px 2px 4px 0px rgb(135 135 135 / 50%);
+      padding: 0.375em 1em 0.25em;
+      margin: 0.25em 0 0.5em auto;
+      background-color: #6C2DBC;
+      color: #ffffff;
+      border-radius: 0.5em;
+      font-size: 0.75rem;
+      visibility: visible;
+      @include shdw-sm;
+
+      @media (min-width: 650px) {
+        // top: 1.75em;
+        // right: 0;
+      }
+    }
+
+    &--msg-box {
+      display: none;
+      visibility: hidden;
+    }
+
+    &--final {
+      margin: 0.75em 0em 0em;
+    }
+  }
+
+  &__spacing {
+    font-weight: 700;
+    padding-bottom: 0.375em;
+  }
+
+  &__pay {
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+
+    @media (min-width: 650px) {
+      margin-top: 0.75em;
+      flex-direction: row;
+    }
   }
 }

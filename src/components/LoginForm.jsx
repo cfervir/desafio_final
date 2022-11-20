@@ -5,7 +5,7 @@ import ContextUser from "../ContextUser";
 
 export default function LoginForm( { title, subtitle } ) {
 
-  const { useForm, userData, setIsAuth, setModalMsg, toggleModal } = useContext(ContextUser);
+  const { useForm, userData, setIsAuth, setModalMsg, toggleModal, setCartItems } = useContext(ContextUser);
   const navigate = useNavigate();
 
   const initialState = { email: '', password: '' };
@@ -23,6 +23,7 @@ export default function LoginForm( { title, subtitle } ) {
           ...findUser,
           logged: true
         })
+        setCartItems('');
         navigate("/user");
         toggleModal();
         setModalMsg([

@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 export default function UserForm( { isAuth } ) {
+
+  const verifications = (isAuth.street === undefined || isAuth.block === undefined || isAuth.city === undefined || isAuth.country === undefined );
+
   return (
     <form>
       <div className="input__wrap">
@@ -23,7 +26,7 @@ export default function UserForm( { isAuth } ) {
       </div>
       <div className="input__label--container input__variable-full">
         <label htmlFor="user__address" className="input__label input__light-la">Address</label>
-        <input type="text" className="input input__form input__light" name="user__address" value={ isAuth.street === undefined ? 'No address yet!' : `${ isAuth.street } ${ isAuth.block }, ${ isAuth.city }. ${ isAuth.country }.` } disabled />
+        <input type="text" className="input input__form input__light" name="user__address" value={ verifications ? 'No address yet!' : `${ isAuth.street } ${ isAuth.block }, ${ isAuth.city }. ${ isAuth.country }.` } disabled />
       </div>
       <Link to="/edit">
         <button className="btn btn__spacing btn__teal btn__edit">Modify Account</button>

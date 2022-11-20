@@ -8,7 +8,7 @@ import ContextUser from "../ContextUser";
 
 export default function AllProducts() {
 
-  const { isAuth, toggleFav, isFav } = useContext(ContextUser);
+  const { isAuth, toggleFav, isFav, addToCart } = useContext(ContextUser);
   const { navData, filterInput } = useContext(ContextData);
 
   const navigate = useNavigate();
@@ -50,9 +50,16 @@ export default function AllProducts() {
               <h3 className="gallery__title">{ content.title }</h3>
               <p className="gallery__author">{`By ${ content.user }`}</p>
             </div>
-            <div className="gallery__price container--flex">
-              <h2><span className="gallery__price--sm">$</span>{ content.price }</h2>
-              <p>USD</p>
+            <div className="gallery__priceAdd container--flex">
+              { isAuth.logged ?
+                <div className="gallery__add container--flex" onClick={() => addToCart(content.id)}>
+                  <span className="gallery__add--decor">Add!</span>
+                </div>
+              : '' }
+              <div className="gallery__price container--flex">
+                <h2><span className="gallery__price--sm">$</span>{ content.price }</h2>
+                <p>USD</p>
+              </div>
             </div>
           </div>
         ))}

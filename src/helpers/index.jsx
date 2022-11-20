@@ -11,3 +11,13 @@ export const sumQtyObj = (cartItems) => {
 export const sumQty = (cartItems) => {
   return cartItems.reduce((a, b) => a + b.qty, 0);
 };
+
+// Checks if delivery is free or if user has to pay. With objects!
+export const deliveryFeeObj = (total) => {
+  return Object.values(total).reduce((a, b) => a + b.total, 0) < 100 ? 15 : 0;
+};
+
+// Prints total. With objects!
+export const totalObj = (total) => {
+  return Object.values(total).reduce((a, b) => a + b.total, 0);
+};

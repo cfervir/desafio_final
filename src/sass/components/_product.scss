@@ -4,6 +4,11 @@
 
   &__title {
     line-height: 1;
+    margin-right: 0.375em;
+
+    &--space {
+      margin-right: 0.188em;
+    }
 
     &--box {
       justify-content: space-between;
@@ -58,6 +63,7 @@
 
     &--cont {
       flex-direction: column-reverse;
+      margin: 0.25em 0;
 
       @media (min-width: 650px) {
         flex-direction: initial;
@@ -71,7 +77,7 @@
 
   &__description {
     @media (min-width: 650px) {
-      margin-top: 0.5em;
+      // margin-top: 0.5em;
     }
   }
 
@@ -88,7 +94,7 @@
 
   &__currency {
     font-size: 1rem;
-    margin: 0 1em 0 0.25em;
+    margin: 0 0 0 0.25em;
   }
 
   &__data {
@@ -107,13 +113,14 @@
   }
 
   &__final {
+    flex-direction: column;
     margin-top: 1em;
     justify-content: space-between;
 
     @media (min-width: 650px) {
       width: 100%;
       gap: 1em;
-      align-items: self-start;
+      align-items: self-end;
     }
   }
   
@@ -129,11 +136,12 @@
   &__link {
     cursor: pointer;
     text-decoration: none;
+    display: inline-block;
     color: #ffffff;
     background: rgb(45, 188, 162);
-    padding: 0.25em 0.5em;
+    padding: 0.375em 0.5em 0.25em;
     border-radius: 0.5em;
-    margin-left: 0.25em;
+    margin: 0.25em 0;
     transition: background 0.25s ease-in;
     @include shdw-sm;
 
@@ -141,5 +149,31 @@
     &:focus {
       background: #6C2DBC;
     }
+  }
+
+  &__wrapper {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &__clickeables {
+    flex-direction: column;
+
+    @media (min-width: 650px) {
+      align-items: flex-end;
+    }
+  }
+
+  &__buttons {
+    margin-top: 0.75em;
+    gap: 0.75em;
+  }
+
+  &__clicks {
+    width: 6.5rem;
+  }
+
+  &__back {
+    width: 100%;
   }
 }

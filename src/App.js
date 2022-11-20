@@ -162,7 +162,7 @@ function App() {
           price: singleProduct.price,
           id: productId,
           qty: (cartItems[productId]?.qty ?? 0) + 1,
-          total: (cartItems[productId]?.total ?? 0) + singleProduct.price,
+          total: parseInt((cartItems[productId]?.total ?? 0)) + parseInt(singleProduct.price),
         }
       })
     } else {
@@ -239,7 +239,7 @@ function App() {
               <Route path="/join" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/forgot" element={<Forgot />} />
-              <Route path="/cart" element={<Cart />} />
+              <Route path="/cart" element={<Private auth={{isAuth}}> <Cart /> </Private>} />
               <Route path="/user" element={<Private auth={{isAuth}}> <User /> </Private>} />
               <Route path="/edit" element={<Private auth={{isAuth}}> <UserEdit /> </Private>} />
               <Route path="/add" element={<Private auth={{isAuth}}> <Add /> </Private>} />
