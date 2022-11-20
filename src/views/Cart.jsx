@@ -105,7 +105,7 @@ export default function Cart() {
             <div className="cart__subtotal container--flex">
               <div className="cart__price container--flex">
                 <p><strong>$</strong></p>
-                <h2>{ cartData.total }</h2>
+                <h2>{ (cartData.total).toLocaleString('en-US', {maximumFractionDigits: 2}) }</h2>
                 <p>USD</p>
               </div>
               <div className="cart__buttons container--flex">
