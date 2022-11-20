@@ -84,10 +84,10 @@ export default function UserAddNew() {
           <label htmlFor="category" className="input__label">Category</label>
           <select className="input input__form" name="category" required onChange={changeHandler}>
             <option>Choose one!</option>
-            <option>Originals</option>
-            <option>Fantasy</option>
-            <option>Terror</option>
-            <option>Movies</option>
+            <option value="originals">Originals</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="terror">Terror</option>
+            <option value="movies">Movies</option>
           </select>
         </div>
         <div className="input__label--container input__variable">

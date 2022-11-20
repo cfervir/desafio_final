@@ -9,8 +9,6 @@ export default function Cart() {
   const { isAuth, cartItems, setCartItems, toggleModal, setModalMsg, addToCart, removeFromCart } = useContext(ContextUser);
   const navigate = useNavigate();
 
-  console.log(cartItems);
-
   const products = parseInt(totalObj(cartItems));
 
   const delivery = () => {
