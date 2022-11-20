@@ -29,7 +29,7 @@ export default function LoginForm( { title, subtitle } ) {
         setModalMsg([
           {
             title: 'Welcome back!',
-            content: `Nice to see you again ${findUser.name}!`
+            content: `Nice to see you ${findUser.name}!`
           }
         ]);
       } else {

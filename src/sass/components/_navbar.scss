@@ -284,6 +284,19 @@
       font-weight: 700;
     }
   }
+
+  &__grow {
+    animation: .4s rollout;
+  }
+}
+
+@keyframes rollout {
+  0% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .lines,

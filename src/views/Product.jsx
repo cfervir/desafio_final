@@ -8,7 +8,7 @@ import ContextUser from "../ContextUser";
 
 export default function Product() {
 
-  const { isAuth, toggleFav, isFav, addToCart, removeFromCart } = useContext(ContextUser);
+  const { isAuth, toggleFav, isFav, addToCart, removeFromCart, cartItems } = useContext(ContextUser);
   const { navData } = useContext(ContextData);
   const { dataId } = useParams();
   const navigate = useNavigate();
@@ -61,9 +61,12 @@ export default function Product() {
               <div className="product__clickeables container--flex">
                 { isAuth.logged ? 
                   <div className="product__buttons container--flex">
-                  <button className="btn btn__blue btn__add product__clicks" onClick={() => addToCart(filtered.id)}>Add</button>
-                  <button className="btn btn__red btn__remove product__clicks" onClick={() => removeFromCart(filtered.id)}>Remove</button>
-                </div>
+                    <button className="btn btn__blue btn__add product__clicks" onClick={() => addToCart(filtered.id)}>Add</button>
+                    { cartItems[filtered.id]?.qty === 0 || cartItems[filtered.id]?.qty === undefined ?
+                      <button className="btn btn__grey btn__remove product__clicks" onClick={() => removeFromCart(filtered.id)}>Remove</button> :
+                      <button className="btn btn__red btn__remove product__clicks" onClick={() => removeFromCart(filtered.id)}>Remove</button>
+                    }
+                  </div>
                 : '' }
                 <div className="product__buttons product__back container--flex">
                   <button className="btn btn__teal btn__add product__back" onClick={() => navigate(-1)}>Go Back</button>

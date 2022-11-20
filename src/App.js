@@ -54,7 +54,7 @@ function App() {
   });
 
   // Cart Items
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState([]);
 
   // Filter
   const [filterInput, setFilterInput] = useState();
@@ -182,7 +182,14 @@ function App() {
       newCartItems[productId].qty-=1;
       newCartItems[productId].total-= newCartItems[productId].price?? 0;
       if (newCartItems[productId].qty === 0) {
-        delete newCartItems[productId]
+        toggleModal();
+        setModalMsg([
+          {
+            title: 'Ooops!',
+            content: `You don't have more of these in your cart!`
+          }
+        ]);
+        delete newCartItems[productId];
       }
       setCartItems(newCartItems)
     }

@@ -46,7 +46,7 @@ export default function Navbar() {
             { isAuth.logged ?
               <Link className="nav__cart" to="/cart">
                 <img className="nav__cart--img" src={ Images.Cart } alt="Cart" />
-                <span className="nav__cart--value">{ sumQtyObj(cartItems) }</span>
+                <span key={ sumQtyObj(cartItems) } className="nav__cart--value nav__grow">{ sumQtyObj(cartItems) }</span>
               </Link>
              : ''}
             {isAuth.logged ? <NavLogged /> : <NavOut />}

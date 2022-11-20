@@ -134,7 +134,7 @@ export default function Cart() {
                 <label htmlFor="user__nick" className="input__label">Special requests</label>
                 <input type="text" className="input input__form" name="user__nick" placeholder="Write here if you need something in special*" />
               </div>
-              <p className="input__warning">We’ll let you know if what you’re asking can be done, or if you need to pay an extra.</p>
+              <p className="input__warning">We'll let you know if your request can be done, or if there will be any extra charges.</p>
             </div>
           </div>
           { !isNaN(delivery()) ?
